@@ -1,3 +1,6 @@
+budgetAllocation = 0
+is_running = True
+
 def expenses():
     cost = 0
     while True:
@@ -39,9 +42,6 @@ def budget():
 def balance():
     print(f"Your current balance is {budgetAllocation}")
 
-
-budgetAllocation = 0
-is_running = True
 
 while is_running:
     print("1. Add Budget. \n"
