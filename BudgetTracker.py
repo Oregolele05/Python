@@ -54,4 +54,3 @@ while is_running:
         budgetAllocation -= expenses()
     elif option == "3":
         balance()
-
