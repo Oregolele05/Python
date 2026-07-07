@@ -5,35 +5,41 @@ is_running = True
 total_expenses = 0
 
 def RentOrMortgage(total_expenses = 0):
-    option = input("Are you paying your rent or mortgage?: ").lower()
-    if option.__contains__("rent"):
-        expenses.append(option.upper())
-        rent = input("How much is your rent?: ")
-        rent = float(rent)
-        if rent <= 0:
-            print("Your rent cannot be less than or equal to 0")
-            return 0
+    is_paying = True
+    while is_paying:
+        option = input("Are you paying your rent or mortgage?: ").lower()
+        if option == "rent":
+            try:
+                rent = float(input("How much is your rent?: R"))
+                if rent <= 0:
+                    print("Your rent cannot be less than or equal to 0")
+                    continue
+                else:
+                    print(f"Your rent is R{rent:.2f}.")
+                    expenses.append(option.upper())
+                    cost.append(rent)
+                    total_expenses += rent
+                    return rent
+            except ValueError:
+                print("Please enter a numeric value.")
+        elif option == "mortgage":
+            mortgage = float(input("How much is your mortgage?: "))
+            try:
+                if mortgage <= 0:
+                    print("Your mortgage cannot be less than or equal to 0")
+                    continue
+                else:
+                    print(f"Your mortgage is {mortgage:.2f}.")
+                    expenses.append(option.upper())
+                    cost.append(mortgage)
+                    total_expenses += mortgage
+                    total.append(total_expenses)
+                    return mortgage
+            except ValueError:
+                print("Please enter a numeric value.")
         else:
-            print(f"Your rent is {rent:.2f}.")
-            cost.append(rent)
-            total_expenses += rent
-            return rent
-    elif option.__contains__("mortgage"):
-        expenses.append(option.upper())
-        mortgage = input("How much is your mortgage?: ")
-        mortgage = float(mortgage)
-        if mortgage <= 0:
-            print("Your mortgage cannot be less than or equal to 0")
+            print("Please enter a valid option.")
             return 0
-        else:
-            print(f"Your mortgage is {mortgage:.2f}.")
-            cost.append(mortgage)
-            total_expenses += mortgage
-            total.append(total_expenses)
-            return mortgage
-    else:
-        print("Please enter a valid option.")
-        return 0
 
 
 #This method will calculate how much groceries cost
@@ -78,7 +84,19 @@ def Grocery(total_expenses=0):
 
 
 def Utility():
-    pass
+    expenses = []
+    is_active = True
+    print("Welcome to the Utility Calculator!")
+    while is_active:
+        option = input("Would you like to continue or quit?: ").lower()
+        if option.__contains__("continue") :
+            item = input("Which utility did you purchase/pay?: ")
+            if item.isalpha():
+                price = input(f"How much was the utility item '{item}'")
+                if price.isdigit():
+                    price = float(price)
+
+
 
 
 def MaintenanceAndRepair():
