@@ -97,7 +97,7 @@ def RentOrMortgage():
                     continue
             elif option == "quit":
                 is_running = False
-        return None
+        return 0
 
 
 #This method will calculate how much groceries cost
@@ -146,7 +146,7 @@ def Grocery():
         else:
             print("Please enter a valid option.")
             continue
-    return None
+    return 0
 
 
 def Utility():
@@ -220,7 +220,7 @@ def Utility():
         else:
             print("Please enter a valid option.")
             continue
-    return None
+    return 0
 
 
 def MaintenanceAndRepair():
@@ -397,7 +397,7 @@ def MaintenanceAndRepair():
         else:
             print("Please enter a valid option.")
             continue
-    return None
+    return 0
 
 
 def Clothing():
@@ -444,7 +444,7 @@ def Clothing():
         else:
             print("Please enter a valid option.")
             continue
-    return None
+    return 0
 
 
 def PropertyTaxes():
@@ -550,7 +550,7 @@ def PropertyTaxes():
         else:
             print("Please enter a valid option.")
             continue
-    return None
+    return 0
 
 
 def HomeownersInsurance():
@@ -642,4 +642,4 @@ def HomeownersInsurance():
         else:
             print("Please enter a valid option.")
             continue
-    return None
+    return 0
