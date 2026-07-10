@@ -46,6 +46,8 @@ def Expenses():
                 continue
 
         elif option == "quit":
+            print("Thank you for using Living Expenses Calculator!")
+            print(f"Your total expenses is {total_expenses:.2f}.")
             is_running = False
         else:
             print("Please enter a valid option.")
@@ -63,40 +65,43 @@ def RentOrMortgage():
                 if choice == "rent":
                     try:
                         rent = float(input("How much is your rent?: R"))
-                        if rent <= 0:
-                            print("Your rent cannot be less than or equal to 0")
-                            continue
-                        else:
+                        if rent > 0:
                             print(f"Your rent is R{rent:.2f}.")
+                            renting_expenses.append([
+                                choice,
+                                rent
+                            ])
+                            return rent
+                        else:
+                            print("Your rent cannot be less than or equal to zero.")
+                            continue
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    renting_expenses.append([
-                        choice,
-                        rent,
-                    ])
-                    return rent
                 elif choice == "mortgage":
                     try:
                         mortgage = float(input("How much is your mortgage?: R"))
-                        if mortgage <= 0:
-                            print("Your mortgage cannot be less than or equal to 0")
-                            continue
-                        else:
+                        if mortgage > 0:
                             print(f"Your mortgage is {mortgage:.2f}.")
+                            renting_expenses.append([
+                                choice,
+                                mortgage
+                            ])
+                            return mortgage
+                        else:
+                            print("Your mortgage cannot be less than zero.")
+                            continue
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    renting_expenses.append([
-                        choice,
-                        mortgage,
-                    ])
-                    return mortgage
                 else:
                     print("Please enter a valid option.")
                     continue
             elif option == "quit":
                 is_running = False
+            else:
+                print("Please enter a valid option. 'continue' or 'quit'.")
+                continue
         return 0
 
 
@@ -111,10 +116,7 @@ def Grocery():
             if item.isalpha():
                 try:
                     price = float(input(f"How much was the item '{item}': R"))
-                    if price <= 0:
-                        print("Your item cannot be less than or equal to 0")
-                        continue
-                    else:
+                    if price > 0:
                         print(f"{item} is R{price:.2f}.")
                         try:
                             quantity = int(input(f"How many {item}(s) did you purchase?: "))
@@ -124,16 +126,20 @@ def Grocery():
                             else:
                                 cost = quantity * price
                                 print(f"Your grocery is total cost was {cost:.2f}.")
+                                grocery_expenses.append([
+                                    item,
+                                    price,
+                                    quantity,
+                                    cost,
+                                ])
+                                return cost
                         except ValueError:
                             print("Please enter a numeric value.")
                             continue
-                        grocery_expenses.append([
-                            item,
-                            price,
-                            quantity,
-                            cost,
-                        ])
-                    return cost
+                    else:
+                        print("Enter a numeric value greater than 0.")
+                        continue
+
                 except ValueError:
                     print("Please enter a numeric value.")
                     continue
@@ -142,6 +148,7 @@ def Grocery():
                 continue
 
         elif option == "quit":
+            print(f"What you bought today: {grocery_expenses}")
             is_running = False
         else:
             print("Please enter a valid option.")
@@ -165,53 +172,54 @@ def Utility():
                 if item == 1:
                     try:
                         price = float(input(f"How much was the '{utilities[0]}' bill?: "))
-                        if price <= 0:
+                        if price > 0:
+                            print(f"{utilities[0]} is R{price:.2f}.")
+                            utility_expenses.append([
+                                utilities[0],
+                                price
+                            ])
+                            return price
+                        else:
                             print(f"Your {utilities[0]} bill cannot be less than or equal to 0")
                             continue
-                        else:
-                            print(f"{utilities[0]} is R{price:.2f}.")
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    utility_expenses.append([
-                        utilities[0],
-                        price
-                    ])
-
                 elif item == 2:
                     try:
                         price = float(input(f"How much was the '{utilities[1]}' bill?: "))
-                        if price <= 0:
+                        if price > 0:
+                            print(f"{utilities[1]} is R{price:.2f}.")
+                            utility_expenses.append([
+                                utilities[1],
+                                price
+                            ])
+                            return price
+                        else:
                             print(f"Your {utilities[1]} bill cannot be less than or equal to 0")
                             continue
-                        else:
-                            print(f"{utilities[1]} is R{price:.2f}.")
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    utility_expenses.append([
-                        utilities[1],
-                        price
-                    ])
                 elif item == 3:
                     try:
                         price = float(input(f"How much was the '{utilities[2]}' bill?: "))
-                        if price <= 0:
+                        if price > 0:
+                            print(f"{utilities[2]} is R{price:.2f}.")
+                            utility_expenses.append([
+                                utilities[2],
+                                price
+                            ])
+                            return price
+                        else:
                             print(f"Your {utilities[2]} bill cannot be less than or equal to 0")
                             continue
-                        else:
-                            print(f"{utilities[2]} is R{price:.2f}.")
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    utility_expenses.append([
-                        utilities[2],
-                        price
-                    ])
                 else:
                     print("Please choose between 1-3")
                     continue
-                return price
             except ValueError:
                 print("Please enter a numeric value.")
                 continue
@@ -244,69 +252,67 @@ def MaintenanceAndRepair():
                     if interior == 1:
                         try:
                             price = float(input(f"How much did'{inside[0]}' cost you?: R"))
-                            if price <=0:
+                            if price > 0:
+                                print(f"{inside[0]} cost is R{price:.2f}.")
+                                maintenance_expenses.append([
+                                    inside[0],
+                                    price
+                                ])
+                                return price
+                            else:
                                 print(f"{inside[0]} cannot be less than or equal to 0")
                                 continue
-                            else:
-                                print(f"{inside[0]} cost is R{price:.2f}.")
                         except ValueError:
                             print("Please enter a numeric value.")
                             continue
-                        maintenance_expenses.append([
-                            inside[0],
-                            price
-                        ])
-                        return price
                     elif interior == 2:
                         try:
                             price = float(input(f"How much did {inside[1]} cost you?: R"))
-                            if price <=0:
+                            if price > 0:
+                                print(f"{inside[1]} cost is R{price:.2f}.")
+                                maintenance_expenses.append([
+                                    inside[1],
+                                    price
+                                ])
+                                return price
+                            else:
                                 print(f"{inside[1]} cannot be less than or equal to 0")
                                 continue
-                            else:
-                                print(f"{inside[1]} cost is R{price:.2f}.")
                         except ValueError:
                             print("Please enter a numeric value.")
                             continue
-                        maintenance_expenses.append([
-                            inside[1],
-                            price
-                        ])
-                        return price
                     elif interior == 3:
                         try:
                             price = float(input(f"How much did {inside[2]} cost you?: R"))
-                            if price <= 0:
+                            if price > 0:
+                                print(f"{inside[2]} cost is R{price:.2f}.")
+                                maintenance_expenses.append([
+                                    inside[2],
+                                    price
+                                ])
+                                return price
+                            else:
                                 print(f"{inside[2]} cannot be less than or equal to 0")
                                 continue
-                            else:
-                                print(f"{inside[2]} cost is R{price:.2f}.")
-
                         except ValueError:
                             print("Please enter a numeric value.")
                             continue
-                        maintenance_expenses.append([
-                            inside[2],
-                            price
-                        ])
-                        return price
                     elif interior == 4:
                         try:
                             price = float(input(f"How much did {inside[3]} cost you?: R"))
-                            if price <= 0:
+                            if price > 0:
+                                print(f"{inside[3]} cost is R{price:.2f}.")
+                                maintenance_expenses.append([
+                                    inside[3],
+                                    price
+                                ])
+                                return price
+                            else:
                                 print(f"{inside[3]} cannot be less than or equal to 0")
                                 continue
-                            else:
-                                print(f"{inside[3]} cost is R{price:.2f}.")
-
                         except ValueError:
                             print("Please enter a numeric value.")
                             continue
-                        maintenance_expenses.append([
-                            inside[3],
-                            price
-                        ])
-                        return price
                     else:
                         print("Please choose between 1-4")
                         continue
@@ -324,75 +330,78 @@ def MaintenanceAndRepair():
                     if exterior == 1:
                         try:
                             price = float(input(f"How much did {outside[0]} cost you?: R"))
-                            if price <=0:
+                            if price > 0:
+                                print(f"{outside[0]} cost is R{price:.2f}.")
+                                maintenance_expenses.append([
+                                    outside[0],
+                                    price
+                                ])
+                                return price
+                            else:
                                 print(f"{outside[0]} cannot be less than or equal to 0")
                                 continue
-                            else:
-                                print(f"{outside[0]} cost is R{price:.2f}.")
-
                         except ValueError:
                             print("Please enter a numeric value.")
                             continue
-                        maintenance_expenses.append([
-                            outside[0],
-                            price
-                        ])
-                        return price
                     elif exterior == 2:
                         try:
                             price = float(input(f"How much did {outside[1]} cost you?: R"))
-                            if price <= 0:
+                            if price > 0:
+                                print(f"{outside[1]} cost is R{price:.2f}.")
+                                maintenance_expenses.append([
+                                    outside[1],
+                                    price
+                                ])
+                                return price
+                            else:
                                 print(f"{outside[1]} cannot be less than or equal to 0")
                                 continue
-                            else:
-                                print(f"{outside[1]} cost is R{price:.2f}.")
                         except ValueError:
                             print("Please enter a numeric value.")
                             continue
-                        maintenance_expenses.append([
-                            outside[1],
-                            price
-                        ])
-                        return price
                     elif exterior == 3:
                         try:
                             price = float(input(f"How much did {outside[2]} cost you?: R"))
-                            if price <=0:
+                            if price > 0:
+                                print(f"{outside[2]} cost is R{price:.2f}.")
+                                maintenance_expenses.append([
+                                    outside[2],
+                                    price
+                                ])
+                                return price
+                            else:
                                 print(f"{outside[2]} cannot be less than or equal to 0")
                                 continue
-                            else:
-                                print(f"{outside[2]} cost is R{price:.2f}.")
                         except ValueError:
                             print("Please enter a numeric value.")
                             continue
-                        maintenance_expenses.append([
-                            outside[2],
-                            price
-                        ])
-                        return price
                     elif exterior == 4:
                         try:
                             price = float(input(f"How much did {outside[3]} cost you?: R"))
-                            if price <=0:
+                            if price > 0:
+                                print(f"{outside[3]} cost is R{price:.2f}.")
+                                maintenance_expenses.append([
+                                    outside[3],
+                                    price
+                                ])
+                                return price
+                            else:
                                 print(f"{outside[3]} cannot be less than or equal to 0")
                                 continue
-                            else:
-                                print(f"{outside[3]} cost is R{price:.2f}.")
                         except ValueError:
                             print("Please enter a numeric value.")
                             continue
-                        maintenance_expenses.append([
-                            outside[3],
-                            price
-                        ])
-                        return price
                     else:
                         print("Please choose between 1-4")
                         continue
                 except ValueError:
                     print("Please enter a numeric value.")
                     continue
+            else:
+                print("Please choose between interior or exterior")
+                continue
         elif option == "quit":
+            print("Goodbye!")
             is_running = False
         else:
             print("Please enter a valid option.")
@@ -410,35 +419,35 @@ def Clothing():
             if clothing.isalpha():
                 try:
                     price = float(input(f"How much was the clothing '{clothing}': R"))
-                    if price <= 0:
-                        print("Your clothing cannot be less than or equal to 0")
-                        continue
-                    else:
+                    if price > 0:
                         print(f"{clothing} is R{price:.2f}.")
                         try:
-
                             quantity = int(input(f"How many {clothing}(s) did you purchase?: "))
                             cost = quantity * price
-                            if quantity <= 0:
-                                print("Your clothing cannot be less than or equal to 0")
-                            else:
+                            if quantity > 0:
                                 print(f"Your total for {clothing} is {cost:.2f}.")
+                                clothing_expenses.append([
+                                    clothing,
+                                    price,
+                                    quantity,
+                                    cost
+                                ])
+                                return cost
+                            else:
+                                print("Your clothing cannot be less than or equal to 0")
+                                continue
                         except ValueError:
                             print("Please enter a numeric value.")
                             continue
-                        clothing_expenses.append([
-                            clothing,
-                            price,
-                            quantity,
-                            cost
-                        ])
-                        return cost
+                    else:
+                        print("Your clothing cannot be less than or equal to 0")
+                        continue
                 except ValueError:
                     print("Please enter a numeric value.")
                     continue
-
             else:
                 print("Please enter valid option. eg. shirt")
+                continue
         elif option == "quit":
             is_running = False
         else:
@@ -464,88 +473,91 @@ def PropertyTaxes():
                                   ": "))
                 if taxes == 1:
                     try:
-                        price = int(input(f"How much was {types[0]}?: "))
-                        if price <=0:
+                        price = float(input(f"How much was {types[0]}?: "))
+                        if price > 0:
+                            print(f"{types[0]} is R{price:.2f}.")
+                            property_taxes_expenses.append([
+                                types[0],
+                                price
+                            ])
+                            return price
+                        else:
                             print(f"Your '{types[0]}' cannot be less than or equal to 0")
                             continue
-                        else:
-                            print(f"{types[0]} is R{price:.2f}.")
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    property_taxes_expenses.append([
-                        types[0],
-                        price
-                    ])
-                    return price
                 elif taxes == 2:
                     try:
-                        price = int(input(f"How much was {types[1]}?: "))
-                        if price <=0:
+                        price = float(input(f"How much was {types[1]}?: "))
+                        if price > 0:
+                            print(f"{types[1]} is R{price:.2f}.")
+                            property_taxes_expenses.append([
+                                types[1],
+                                price
+                            ])
+                            return price
+                        else:
                             print(f"Your '{types[1]}' cannot be less than or equal to 0")
                             continue
-                        else:
-                            print(f"{types[1]} is R{price:.2f}.")
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    property_taxes_expenses.append([
-                        types[1],
-                        price
-                    ])
-                    return price
                 elif taxes == 3:
                     try:
-                        price = int(input(f"How much was {types[2]}?: "))
-                        if price <=0:
+                        price = float(input(f"How much was {types[2]}?: "))
+                        if price > 0:
+                            print(f"{types[2]} is R{price:.2f}.")
+                            property_taxes_expenses.append([
+                                types[2],
+                                price
+                            ])
+                            return price
+                        else:
                             print(f"Your '{types[2]}' cannot be less than or equal to 0")
                             continue
-                        else:
-                            print(f"{types[2]} is R{price:.2f}.")
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    property_taxes_expenses.append([
-                        types[2],
-                        price
-                    ])
-                    return price
                 elif taxes == 4:
                     try:
-                        price = int(input(f"How much was {types[3]}?: "))
-                        if price <= 0:
-                            print(f"Your '{types[3]}' cannot be less than or equal to 0")
-                        else:
+                        price = float(input(f"How much was {types[3]}?: "))
+                        if price > 0:
                             print(f"{types[3]} is R{price:.2f}.")
+                            property_taxes_expenses.append([
+                                types[3],
+                                price
+                            ])
+                            return price
+                        else:
+                            print(f"Your '{types[3]}' cannot be less than or equal to 0")
+                            continue
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    property_taxes_expenses.append([
-                        types[3],
-                        price
-                    ])
-                    return price
                 elif taxes == 5:
                     try:
-                        price = int(input(f"How much was {types[4]}?: "))
-                        if price <= 0:
-                            print(f"Your '{types[4]}' cannot be less than or equal to 0")
-                        else:
+                        price = float(input(f"How much was {types[4]}?: "))
+                        if price > 0:
                             print(f"{types[4]} is R{price:.2f}.")
+                            property_taxes_expenses.append([
+                                types[4],
+                                price
+                            ])
+                            return price
+                        else:
+                            print(f"Your '{types[4]}' cannot be less than or equal to 0")
+                            continue
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    property_taxes_expenses.append([
-                        types[4],
-                        price
-                    ])
-                    return price
                 else:
                     print("Please enter a valid option.")
                     continue
             except ValueError:
                 print("Please enter a numeric value.")
         elif option == "quit":
+            print("Goodbye!")
             is_running = False
         else:
             print("Please enter a valid option.")
@@ -570,67 +582,67 @@ def HomeownersInsurance():
                 if policy == 1:
                     try:
                         price = float(input(f"How much was {insurance[0]}?: "))
-                        if price <= 0:
+                        if price > 0:
+                            print(f"{insurance[0]} is R{price:.2f}.")
+                            insurance_expenses.append([
+                                insurance[0],
+                                price
+                            ])
+                            return price
+                        else:
                             print(f"Your '{insurance[0]}' cannot be less than or equal to 0")
                             continue
-                        else:
-                            print(f"{insurance[0]} is R{price:.2f}.")
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    insurance_expenses.append([
-                        insurance[0],
-                        price
-                    ])
-                    return price
                 elif policy == 2:
                     try:
                         price = float(input(f"How much was {insurance[1]}?: "))
-                        if price <= 0:
+                        if price > 0:
+                            print(f"{insurance[1]} is R{price:.2f}.")
+                            insurance_expenses.append([
+                                insurance[1],
+                                price
+                            ])
+                            return price
+                        else:
                             print(f"Your '{insurance[1]}' cannot be less than or equal to 0")
                             continue
-                        else:
-                            print(f"{insurance[1]} is R{price:.2f}.")
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    insurance_expenses.append([
-                        insurance[1],
-                        price
-                    ])
-                    return price
                 elif policy == 3:
                     try:
                         price = float(input(f"How much was {insurance[2]}?: "))
-                        if price <= 0:
+                        if price > 0:
+                            print(f"{insurance[2]} is R{price:.2f}.")
+                            insurance_expenses.append([
+                                insurance[2],
+                                price
+                            ])
+                            return price
+                        else:
                             print(f"Your '{insurance[2]}' cannot be less than or equal to 0")
                             continue
-                        else:
-                            print(f"{insurance[2]} is R{price:.2f}.")
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    insurance_expenses.append([
-                        insurance[2],
-                        price
-                    ])
-                    return price
                 elif policy == 4:
                     try:
                         price = float(input(f"How much was {insurance[3]}?: "))
-                        if price <= 0:
+                        if price > 0:
+                            print(f"{insurance[3]} is R{price:.2f}.")
+                            insurance_expenses.append([
+                                insurance[3],
+                                price
+                            ])
+                            return price
+                        else:
                             print(f"Your '{insurance[3]}' cannot be less than or equal to 0")
                             continue
-                        else:
-                            print(f"{insurance[3]} is R{price:.2f}.")
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
-                    insurance_expenses.append([
-                        insurance[3],
-                        price
-                    ])
-                    return price
                 else:
                     print("Please enter a valid option.")
                     continue
@@ -638,6 +650,7 @@ def HomeownersInsurance():
                 print("Please enter a numeric value.")
                 continue
         elif option == "quit":
+            print("Goodbye!")
             is_running = False
         else:
             print("Please enter a valid option.")
