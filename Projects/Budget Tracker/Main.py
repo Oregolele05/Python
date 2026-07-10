@@ -1,11 +1,23 @@
 import LivingExpenses as LE, TransportationExpenses as TE, FamilyCare as FC, PersonalCare as PC, HealthCare as HC
-import Technology as T, DebtPayments as DP, SavingsAndInvestments as SAI, Entertainment as E, Miscellaneous as M
+import TechnologyExpenses as T, DebtPayments as DP, SavingsAndInvestments as SAI, EntertainmentExpenses as EE, MiscellaneousExpenses as ME
 total_expenses = 0
 is_running = True
 
 while is_running:
     try:
-        choice = int(input("Enter your choice (1-11): "))
+        choice = int(input("Enter your choice (1-11)"
+                           "1. Living Expenses. \n"
+                           "2. Transportation Expenses. \n"
+                           "3. Family Care. \n"
+                           "4. Personal Care. \n"
+                           "5. Health Care. \n"
+                           "6. Technology expenses. \n"
+                           "7. Debt Payments. \n"
+                           "8. Savings & Investments. \n"
+                           "9. Entertainment expenses. \n"
+                           "10. Miscellaneous expenses. \n"
+                           "11. Quit."
+                           "choice (1-11): "))
         if choice == 1:
             total_expenses += LE.Expenses()
         elif choice == 2:
@@ -23,16 +35,16 @@ while is_running:
         elif choice == 8:
             total_expenses += SAI.Funding()
         elif choice == 9:
-            total_expenses += E.Entertain()
+            total_expenses += EE.Entertain()
         elif choice == 10:
-            total_expenses += M.Misc()
+            total_expenses += ME.Misc()
         elif choice == 11:
             is_running = False
         else:
-            print("Invalid Choice.\nChoose 1-10")
+            print("Invalid Choice.\nChoose 1-11")
             continue
     except ValueError:
-        print("Invalid Choice.\nChoose 1-10")
+        print("Invalid Choice.\nChoose 1-11")
         continue
 print("Thank you for using Budget Tracker")
 print(f"Total expenses: R{total_expenses:.2f}")
