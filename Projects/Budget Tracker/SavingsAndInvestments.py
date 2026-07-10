@@ -1,6 +1,6 @@
 emergency_fund = []
 retirement_fund = []
-investment_contrbutions = []
+investment_contributions = []
 college_fund = []
 financial_goals = []
 
