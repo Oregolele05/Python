@@ -29,6 +29,8 @@ def SelfCare():
                     total_expenses += Cosmetics()
                 elif choice == 5:
                     total_expenses += WellnessTreatments()
+                else:
+                    print("Please choose between 1-5.")
             except ValueError:
                 print("Please enter a numeric value.")
                 continue
@@ -301,6 +303,7 @@ def Cosmetics():
         else:
             print("Please enter either 'continue' or 'quit'.")
             continue
+    return 0
 
 def WellnessTreatments():
     is_running = True
