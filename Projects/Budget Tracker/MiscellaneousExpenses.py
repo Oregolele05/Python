@@ -8,7 +8,7 @@ def Misc():
     total_expenses = 0
     is_running = True
     while is_running:
-        print("Welcome to the savings and investments calculator.")
+        print("Welcome to the Miscellaneous Expenses calculator.")
         option = input("Would you like to continue or quit?: ").lower()
         if option == "continue":
             try:
