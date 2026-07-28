@@ -294,6 +294,9 @@ def Cosmetics():
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
+                else:
+                    print("Please choose between 1-4.")
+                    continue
             except ValueError:
                 print("Please enter a numeric value.")
                 continue
