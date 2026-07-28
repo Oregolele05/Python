@@ -8,16 +8,16 @@ def Entertain():
     total_expenses = 0
     is_running = True
     while is_running:
-        print("Welcome To ther Entertainment expenses calculator!")
+        print("Welcome To the Entertainment expenses calculator!")
         option = input("Would you like to continue or quit?: ").lower()
         if option == "continue":
             try:
-                choice = int(input("What would youy like to calculate?\n" 
+                choice = int(input("What would you like to calculate?\n" 
                 "1. Ordering and Dining costs.\n" 
                 "2. Movie expenses.\n" 
                 "3. Events/Concerts.\n" 
                 "4. Recreational activities or hobbies.\n" 
-                "5. Vacation or Trips."
+                "5. Vacation or Trips"
                 "choose an option (1-5): "))
                 if choice == 1:
                     total_expenses += OrderingAndDining()
@@ -26,7 +26,7 @@ def Entertain():
                 elif choice ==3:
                     total_expenses += EventAndConcert()
                 elif choice ==4:
-                    total_expenses =+ RecreationalAndHobbies()
+                    total_expenses += RecreationalAndHobbies()
                 elif choice ==5:
                     total_expenses += VacationAndTravel()
                 else:
