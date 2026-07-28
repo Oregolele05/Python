@@ -44,7 +44,28 @@ def Entertain():
     return total_expenses
 
 def OrderingAndDining():
-    pass
+    foods_type = ["Restaurant", "Fast food"]
+    is_running = True
+    while is_running:
+        print("Welcome to the Ordering and Dining Expenses calculator!")
+        option = input("Would you like to continue or quit?: ").lower()
+        if option == "continue":
+            try:
+                choice = int(input("Which did you spend on?\n"
+                                   "1. Restaurant.\n"
+                                   "2. Fast food.\n"
+                                   "choose an option (1-2): " ))
+                if choice == 1:
+                    food = foods_type[0]
+                    try:
+                        price = float(input(f"How much did you spend on {food}?\n"))
+
+        elif option == "quit":
+            print("Goodbye!")
+            is_running = False
+        else:
+            print("Please enter either 'continue' or 'quit'.")
+            continue
 
 
 def MovieAndRental():
