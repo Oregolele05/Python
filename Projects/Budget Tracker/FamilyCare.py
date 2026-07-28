@@ -8,7 +8,7 @@ def FamCare():
     is_running = True
     total_expenses = 0
     while is_running:
-        print("Welcome to the Transportation Expenses Calculator!")
+        print("Welcome to the Family Expenses Calculator!")
         option = input("Would you like to continue or quit?: ").lower()
         if option == "continue":
             try:
@@ -48,7 +48,7 @@ def ChildExpenses():
     is_running = True
     care = ["Child care", "Daycare", "Babysitting"]
     while is_running:
-        print("Welcome to the Family Care")
+        print("Welcome to the Child Care")
         option = input("Would you like to continue or quit: ").lower()
         if option == "continue":
             try:
@@ -276,7 +276,7 @@ def VeterinaryExpenses():
                     except ValueError:
                         print("Please enter a number")
                         continue
-                if choice == 2:
+                elif choice == 2:
                     visit = pet[1]
                     try:
                         price = float(input(f"How much was the {visit} ?: R"))
@@ -310,6 +310,9 @@ def VeterinaryExpenses():
                     except ValueError:
                         print("Please enter a number")
                         continue
+                else:
+                    print("Please enter a valid choice (1-3)")
+                    continue
             except ValueError:
                 print("Please enter a number")
                 continue
