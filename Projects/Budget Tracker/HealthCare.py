@@ -9,7 +9,7 @@ def Medical():
     is_running =True
     while is_running :
         print("Welcome to the Health Care Calculator!")
-        option = input("Would you like to continue or quit")
+        option = input("Would you like to continue or quit").lower()
         if option == "continue":
             try:
                 choice = int(input("Would you like to do?\n"
