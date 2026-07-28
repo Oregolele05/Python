@@ -174,12 +174,12 @@ def InternetServices():
             try:
                 choice = int(input("Which one did you pay for?\n"
                                    "1. Data sim. \n"
-                                   "2. Wi-fi"
+                                   "2. Wi-fi.\n"
                                    "choice (1-2): "))
                 if choice == 1:
                     internet = plan[0]
                     try:
-                        price = float(input(f"How much do you pay for {internet}?: ?"))
+                        price = float(input(f"How much do you pay for {internet}?: R"))
                         if price > 0:
                             print(f"Your total cost for {internet} is R{price:.2f}")
                             internet_plan.append([
@@ -196,7 +196,7 @@ def InternetServices():
                 elif choice == 2:
                     internet = plan[1]
                     try:
-                        price = float(input(f"How much do you pay for {internet}?: ?"))
+                        price = float(input(f"How much do you pay for {internet}?: R"))
                         if price > 0:
                             print(f"Your total cost for {internet} is R{price:.2f}")
                             internet_plan.append([
@@ -234,7 +234,7 @@ def ComputerComponents():
         option = input("Would you like to continue or quit?: ").lower()
         if option == "continue":
             try:
-                choice = int(input("Which one did you pay for?"
+                choice = int(input("Which one did you pay for?\n"
                                    "1. Central processing unit (CPU).\n"
                                    "2. Memory (RAM).\n"
                                    "3. Storage Devices.\n"
@@ -246,7 +246,7 @@ def ComputerComponents():
                 if choice == 1:
                     parts = comp[0]
                     try:
-                        price = float(input(f"How much do you pay for {parts}?: ?"))
+                        price = float(input(f"How much do you pay for {parts}?: R"))
                         if price > 0:
                             print(f"Your total cost for {parts} is R{price:.2f}")
                             computer_payments.append([
@@ -263,7 +263,7 @@ def ComputerComponents():
                 elif choice == 2:
                     parts = comp[1]
                     try:
-                        price = float(input(f"How much do you pay for {parts}?: ?"))
+                        price = float(input(f"How much do you pay for {parts}?: R"))
                         if price > 0:
                             print(f"Your total cost for {parts} is R{price:.2f}")
                             computer_payments.append([
@@ -280,7 +280,7 @@ def ComputerComponents():
                 elif choice == 3:
                     parts = comp[2]
                     try:
-                        price = float(input(f"How much do you pay for {parts}?: ?"))
+                        price = float(input(f"How much do you pay for {parts}?: R"))
                         if price > 0:
                             print(f"Your total cost for {parts} is R{price:.2f}")
                             computer_payments.append([
@@ -297,7 +297,7 @@ def ComputerComponents():
                 elif choice == 4:
                     parts = comp[3]
                     try:
-                        price = float(input(f"How much do you pay for {parts}?: ?"))
+                        price = float(input(f"How much do you pay for {parts}?: R"))
                         if price > 0:
                             print(f"Your total cost for {parts} is R{price:.2f}")
                             computer_payments.append([
@@ -314,7 +314,7 @@ def ComputerComponents():
                 elif choice == 5:
                     parts = comp[4]
                     try:
-                        price = float(input(f"How much do you pay for {parts}?: ?"))
+                        price = float(input(f"How much do you pay for {parts}?: R"))
                         if price > 0:
                             print(f"Your total cost for {parts} is R{price:.2f}")
                             computer_payments.append([
@@ -331,7 +331,7 @@ def ComputerComponents():
                 elif choice == 6:
                     parts = comp[5]
                     try:
-                        price = float(input(f"How much do you pay for {parts}?: ?"))
+                        price = float(input(f"How much do you pay for {parts}?: R"))
                         if price > 0:
                             print(f"Your total cost for {parts} is R{price:.2f}")
                             computer_payments.append([
@@ -348,7 +348,7 @@ def ComputerComponents():
                 elif choice == 7:
                     parts = comp[6]
                     try:
-                        price = float(input(f"How much do you pay for {parts}?: ?"))
+                        price = float(input(f"How much do you pay for {parts}?: R"))
                         if price > 0:
                             print(f"Your total cost for {parts} is R{price:.2f}")
                             computer_payments.append([
@@ -394,7 +394,7 @@ def StreamingServices():
                 if choice == 1:
                     stream =  streaming[0]
                     try:
-                        price = float(input(f"How much do you pay for {stream}?: ?"))
+                        price = float(input(f"How much do you pay for {stream}?: R"))
                         if price > 0:
                             print(f"Your total cost for {stream} is R{price:.2f}")
                             streaming_payments.append([
@@ -411,7 +411,7 @@ def StreamingServices():
                 elif choice == 2:
                     stream = streaming[1]
                     try:
-                        price = float(input(f"How much do you pay for {stream}?: ?"))
+                        price = float(input(f"How much do you pay for {stream}?: R"))
                         if price > 0:
                             print(f"Your total cost for {stream} is R{price:.2f}")
                             streaming_payments.append([
@@ -428,7 +428,7 @@ def StreamingServices():
                 elif choice == 3:
                     stream = streaming[2]
                     try:
-                        price = float(input(f"How much do you pay for {stream}?: ?"))
+                        price = float(input(f"How much do you pay for {stream}?: R"))
                         if price > 0:
                             print(f"Your total cost for {stream} is R{price:.2f}")
                             streaming_payments.append([
@@ -445,7 +445,7 @@ def StreamingServices():
                 elif choice == 4:
                     stream = streaming[3]
                     try:
-                        price = float(input(f"How much do you pay for {stream}?: ?"))
+                        price = float(input(f"How much do you pay for {stream}?: R"))
                         if price > 0:
                             print(f"Your total cost for {stream} is R{price:.2f}")
                             streaming_payments.append([
@@ -462,7 +462,7 @@ def StreamingServices():
                 elif choice == 5:
                     stream = streaming[4]
                     try:
-                        price = float(input(f"How much do you pay for {stream}?: ?"))
+                        price = float(input(f"How much do you pay for {stream}?: R"))
                         if price > 0:
                             print(f"Your total cost for {stream} is R{price:.2f}")
                             streaming_payments.append([
@@ -476,6 +476,9 @@ def StreamingServices():
                     except ValueError:
                         print("Please enter a numeric value.")
                         continue
+                else:
+                    print("Please enter a choice between 1-5.")
+                    continue
             except ValueError:
                 print("Please enter a numeric value.")
                 continue
@@ -504,7 +507,7 @@ def GamingSubscriptions():
                 if choice == 1:
                     subs = premiums[0]
                     try:
-                        price = float(input(f"How much do you pay for {subs}?: ?"))
+                        price = float(input(f"How much do you pay for {subs}?: R"))
                         if price > 0:
                             print(f"Your total cost for {subs} is R{price:.2f}")
                             gaming_subscriptions.append([
@@ -521,7 +524,7 @@ def GamingSubscriptions():
                 elif choice == 2:
                     subs = premiums[1]
                     try:
-                        price = float(input(f"How much do you pay for {subs}?: ?"))
+                        price = float(input(f"How much do you pay for {subs}?: R"))
                         if price > 0:
                             print(f"Your total cost for {subs} is R{price:.2f}")
                             gaming_subscriptions.append([
@@ -538,7 +541,7 @@ def GamingSubscriptions():
                 elif choice == 3:
                     subs = premiums[2]
                     try:
-                        price = float(input(f"How much do you pay for {subs}?: ?"))
+                        price = float(input(f"How much do you pay for {subs}?: R"))
                         if price > 0:
                             print(f"Your total cost for {subs} is R{price:.2f}")
                             gaming_subscriptions.append([
@@ -583,7 +586,7 @@ def TechAccessories():
                 if choice == 1:
                     tech = accessoriess[0]
                     try:
-                        price =float(input(f"How much do you pay for {tech}?: ?"))
+                        price =float(input(f"How much do you pay for {tech}?: R"))
                         if price > 0:
                             print(f"Your total cost for {tech} is R{price:.2f}")
                             tech_parts.append([
@@ -600,7 +603,7 @@ def TechAccessories():
                 elif choice == 2:
                     tech = accessoriess[1]
                     try:
-                        price = float(input(f"How much do you pay for {tech}?: ?"))
+                        price = float(input(f"How much do you pay for {tech}?: R"))
                         if price > 0:
                             print(f"Your total cost for {tech} is R{price:.2f}")
                             tech_parts.append([
@@ -617,7 +620,7 @@ def TechAccessories():
                 elif choice == 3:
                     tech = accessoriess[2]
                     try:
-                        price = float(input(f"How much do you pay for {tech}?: ?"))
+                        price = float(input(f"How much do you pay for {tech}?: R"))
                         if price > 0:
                             print(f"Your total cost for {tech} is R{price:.2f}")
                             tech_parts.append([
