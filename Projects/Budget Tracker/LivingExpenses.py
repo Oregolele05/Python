@@ -47,7 +47,7 @@ def Expenses():
 
         elif option == "quit":
             print("Thank you for using Living Expenses Calculator!")
-            print(f"Your total expenses is {total_expenses:.2f}.")
+            print(f"Your total expenses is R{total_expenses:.2f}.")
             is_running = False
         else:
             print("Please enter a valid option.")
@@ -164,11 +164,11 @@ def Utility():
         option = input("Would you like to continue or quit?: ").lower()
         if option == "continue":
             try:
-                item = int(input("Which utility did you purchase/pay? (1-3):"
+                item = int(input("Which utility did you purchase/pay?\n:"
                              "1. Water\n"
                              "2. Electricity\n"
-                             "3. Gas "
-                             ": "))
+                             "3. Gas.\n "
+                             "choice (1-3): "))
                 if item == 1:
                     try:
                         price = float(input(f"How much was the '{utilities[0]}' bill?: "))

@@ -1,11 +1,21 @@
-import LivingExpenses as LE, TransportationExpenses as TE, FamilyCare as FC, PersonalCare as PC, HealthCare as HC
-import TechnologyExpenses as T, DebtPayments as DP, SavingsAndInvestments as SAI, EntertainmentExpenses as EE, MiscellaneousExpenses as ME
+import LivingExpenses as LE
+import TransportationExpenses as TE
+import FamilyCare as FC
+import PersonalCare as PC
+import HealthCare as HC
+import TechnologyExpenses as T
+import DebtPayments as DP
+import SavingsAndInvestments as SAI
+import EntertainmentExpenses as EE
+import MiscellaneousExpenses as ME
+
+
 total_expenses = 0
 is_running = True
 
 while is_running:
     try:
-        choice = int(input("Enter your choice (1-11)"
+        choice = int(input("Enter your choice (1-11)\n"
                            "1. Living Expenses. \n"
                            "2. Transportation Expenses. \n"
                            "3. Family Care. \n"
@@ -16,7 +26,7 @@ while is_running:
                            "8. Savings & Investments. \n"
                            "9. Entertainment expenses. \n"
                            "10. Miscellaneous expenses. \n"
-                           "11. Quit."
+                           "11. Quit.\n"
                            "choice (1-11): "))
         if choice == 1:
             total_expenses += LE.Expenses()
