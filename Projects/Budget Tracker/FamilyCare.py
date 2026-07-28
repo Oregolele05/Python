@@ -329,7 +329,7 @@ def PetInsurance():
     is_running = True
     insurance = ["Accident-Only Plans", "Illness-Only Plans", "Wellness Plans", "Comprehensive / Extensive Plans"]
     while is_running:
-        print("Welcome to the School Expenses Calculator!")
+        print("Welcome to the Pet Insurance Calculator!")
         option = input("Would you like to continue or quit?: ").lower()
         if option == "continue":
             try:
