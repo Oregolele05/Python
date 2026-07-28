@@ -4,20 +4,143 @@ personal_loan = []
 medical_debt = []
 
 def Debits():
-    pass
+    total_expenses = 0
+    is_running = True
+    while is_running:
+        print("Welcome to the Debt payments calculator")
+        choice = input("Would you like to continue or quit?").lower()
+        if choice == "continue":
+            try:
+                option = int(input("Would you like to pay off?\n"
+                                   "1. Credit card.\n"
+                                   "2. Student Loan.\n"
+                                   "3. Personal Loan.\n"
+                                   "4. Medical Debt.\n"
+                                   "choice (1-4): "))
+                if option == 1:
+                    total_expenses += CreditPayments()
+                elif option == 2:
+                    total_expenses += StudentLoan()
+                elif option == 3:
+                    total_expenses += PersonalLoan()
+                elif option == 4:
+                    total_expenses += MedicalDebt()
+                else:
+                    print("Please choose between 1-4.")
 
+            except ValueError:
+                print("Please enter a numeric value")
+                continue
+        elif choice == "quit":
+            is_running = False
+            print("Thank you for your time!")
+        else:
+            print("Please enter either 'continue' or 'quit'")
+            continue
+    return total_expenses
 
 def CreditPayments():
-    pass
+    is_running = True
+    while is_running:
+        print("Welcome to the Credit card payments calculator")
+        option = input("Would you like to continue or quit?").lower()
+        if option == "continue":
+            try:
+                price = float(input("How much did you pay off?: R"))
+                if price > 0:
+                    print(f"You payed off R{price:.2f}")
+                    credit_card.append([price])
+                    return price
+                else:
+                    print(f"You cannot have payed R{price:.2f}.")
+                    continue
+            except ValueError:
+                print("Please enter a numeric value")
+                continue
+        elif option == "quit":
+            is_running = False
+            print("Thank you for your time!")
+        else:
+            print("Please enter either 'continue' or 'quit'.")
+            continue
+    return 0
 
 
 def StudentLoan():
-    pass
-
+    is_running = True
+    while is_running:
+        print("Welcome to the Student loan payments calculator")
+        option = input("Would you like to continue or quit?").lower()
+        if option == "continue":
+            try:
+                price = float(input("How much did you pay off?: R"))
+                if price > 0:
+                    print(f"You payed off R{price:.2f}")
+                    student_loan.append([price])
+                    return price
+                else:
+                    print(f"You cannot have payed R{price:.2f}.")
+                    continue
+            except ValueError:
+                print("Please enter a numeric value")
+                continue
+        elif option == "quit":
+            is_running = False
+            print("Thank you for your time!")
+        else:
+            print("Please enter either 'continue' or 'quit'.")
+            continue
+    return 0
 
 def PersonalLoan():
-    pass
+    is_running = True
+    while is_running:
+        print("Welcome to the Personal loan payments calculator")
+        option = input("Would you like to continue or quit?").lower()
+        if option == "continue":
+            try:
+                price = float(input("How much did you pay off?: R"))
+                if price > 0:
+                    print(f"You payed off R{price:.2f}")
+                    personal_loan.append([price])
+                    return price
+                else:
+                    print(f"You cannot have payed R{price:.2f}.")
+                    continue
+            except ValueError:
+                print("Please enter a numeric value")
+                continue
+        elif option == "quit":
+            is_running = False
+            print("Thank you for your time!")
+        else:
+            print("Please enter either 'continue' or 'quit'.")
+            continue
+    return 0
 
 
 def MedicalDebt():
-    pass
+    is_running = True
+    while is_running:
+        print("Welcome to the Medical debts payments calculator")
+        option = input("Would you like to continue or quit?").lower()
+        if option == "continue":
+            try:
+                price = float(input("How much did you pay off?: R"))
+                if price > 0:
+                    print(f"You payed off R{price:.2f}")
+                    medical_debt.append([price])
+                    return price
+                else:
+                    print(f"You cannot have payed R{price:.2f}.")
+                    continue
+            except ValueError:
+                print("Please enter a numeric value")
+                continue
+        elif option == "quit":
+            is_running = False
+            print("Thank you for your time!")
+        else:
+            print("Please enter either 'continue' or 'quit'.")
+            continue
+    return 0
