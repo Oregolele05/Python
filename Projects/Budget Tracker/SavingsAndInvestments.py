@@ -1,10 +1,12 @@
 import csv
+import os
+import traceback
+
 emergency_fund = []
 retirement_fund = []
 investment_contributions = []
 education_fund = []
 financial_goals = []
-
 
 def Funding():
     total_expenses = 0
@@ -20,7 +22,7 @@ def Funding():
                                    "3. Investment contributions.\n"
                                    "4. Education fund.\n"
                                    "5. Financial goals.\n"
-                                   "choice (1-5)"))
+                                   "choice (1-5): "))
                 if choice == 1:
                     total_expenses += EmergencyFund()
                 elif choice == 2:
@@ -40,41 +42,42 @@ def Funding():
         elif option == "quit":
             is_running = False
             print("Goodbye!")
-            filename = "savings_and_investments.csv"
-            with open(filename, 'w', newline='') as file:
-                writer = csv.writer(file)
-
-                # child expenses
-                writer.writerow(["Emergency fund"])
-                writer.writerow(["Amount"])
-                writer.writerows(emergency_fund)
-                writer.writerow([])
-
-                writer.writerow(["Retirement fund"])
-                writer.writerow(["Amount"])
-                writer.writerows(retirement_fund)
-                writer.writerow([])
-
-                writer.writerow(["Investment portfolio"])
-                writer.writerow(["Amount"])
-                writer.writerows(investment_contributions)
-                writer.writerow([])
-
-                writer.writerow(["Education fund"])
-                writer.writerow(["Amount"])
-                writer.writerows(education_fund)
-                writer.writerow([])
-
-                writer.writerow(["Financial goals"])
-                writer.writerow(["Amount"])
-                writer.writerows(financial_goals)
-                writer.writerow([])
-
-                writer.writerow(["Total Expenses", total_expenses])
+            folder = os.path.join(os.path.dirname(__file__), "Files")
+            filename = os.path.join(folder, "savings_and_investments.csv")
+            try:
+                os.makedirs(folder, exist_ok=True)
+                with open(filename, 'w', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(["Emergency fund"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(emergency_fund)
+                    writer.writerow([])
+                    writer.writerow(["Retirement fund"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(retirement_fund)
+                    writer.writerow([])
+                    writer.writerow(["Investment portfolio"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(investment_contributions)
+                    writer.writerow([])
+                    writer.writerow(["Education fund"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(education_fund)
+                    writer.writerow([])
+                    writer.writerow(["Financial goals"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(financial_goals)
+                    writer.writerow([])
+                    writer.writerow(["Total Expenses", total_expenses])
+            except OSError as e:
+                print(f"Could not save savings_and_investments.csv: {e}")
+                traceback.print_exc()
         else:
             print("Please enter either 'continue' or 'quit'.")
             continue
     return total_expenses
+
+# Sub‑functions unchanged.
 
 
 def EmergencyFund():

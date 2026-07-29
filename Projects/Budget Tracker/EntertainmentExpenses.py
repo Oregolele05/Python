@@ -1,4 +1,7 @@
 import csv
+import os
+import traceback
+
 ordering_costs = []
 film_cost = []
 event_tickets = []
@@ -22,13 +25,13 @@ def Entertain():
                 "choose an option (1-5): "))
                 if choice == 1:
                     total_expenses += OrderingAndDining()
-                elif choice ==2:
+                elif choice == 2:
                     total_expenses += MovieAndRental()
-                elif choice ==3:
+                elif choice == 3:
                     total_expenses += EventAndConcert()
-                elif choice ==4:
+                elif choice == 4:
                     total_expenses += RecreationalAndHobbies()
-                elif choice ==5:
+                elif choice == 5:
                     total_expenses += VacationAndTravel()
                 else:
                     print("Invalid choice. Please choose between 1-5.")
@@ -38,47 +41,44 @@ def Entertain():
                 continue
         elif option == "quit":
             print("Goodbye!")
-            filename = "entertainment_expenses.csv"
-            with open(filename, 'w', newline='') as file:
-                writer = csv.writer(file)
-
-                #food paymemts
-                writer.writerow(["Food expenses"])
-                writer.writerow(["Type", "amount"])
-                writer.writerows(ordering_costs)
-                writer.writerow([])
-
-                #Film costs
-                writer.writerow(["Movies"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(film_cost)
-                writer.writerow([])
-
-                #gigs
-                writer.writerow(["Outdoor gig"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(event_tickets)
-                writer.writerow([])
-
-                #recreational and hobbies
-                writer.writerow(["Extra activities"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(recreational_hobby)
-                writer.writerow([])
-
-                #travelling
-                writer.writerow(["Traveling costs"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(travelling)
-                writer.writerow([])
-
-                writer.writerow(["Total Expenses", total_expenses])
-                
+            folder = os.path.join(os.path.dirname(__file__), "Files")
+            filename = os.path.join(folder, "entertainment_expenses.csv")
+            try:
+                os.makedirs(folder, exist_ok=True)
+                with open(filename, 'w', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(["Food expenses"])
+                    writer.writerow(["Type", "amount"])
+                    writer.writerows(ordering_costs)
+                    writer.writerow([])
+                    writer.writerow(["Movies"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(film_cost)
+                    writer.writerow([])
+                    writer.writerow(["Outdoor gig"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(event_tickets)
+                    writer.writerow([])
+                    writer.writerow(["Extra activities"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(recreational_hobby)
+                    writer.writerow([])
+                    writer.writerow(["Traveling costs"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(travelling)
+                    writer.writerow([])
+                    writer.writerow(["Total Expenses", total_expenses])
+            except OSError as e:
+                print(f"Could not save entertainment_expenses.csv: {e}")
+                traceback.print_exc()
             is_running = False
         else:
             print("Please enter either 'continue' or 'quit'.")
             continue
     return total_expenses
+
+# The sub‑functions remain exactly as you wrote them – they are correct.
+# I omit them here for brevity, but you should keep them unchanged.
 
 def OrderingAndDining():
     foods_type = ["Restaurant", "Fast food"]

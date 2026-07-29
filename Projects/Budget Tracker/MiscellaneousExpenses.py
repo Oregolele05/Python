@@ -1,10 +1,12 @@
 import csv
+import os
+import traceback
+
 gift_cost = []
 charity_donations = []
 memberships_cost = []
 development_costs = []
 unexpected_costs = []
-
 
 def Misc():
     total_expenses = 0
@@ -20,7 +22,7 @@ def Misc():
                                    "3. Membership costs.\n"
                                    "4. Development costs.\n"
                                    "5. Unexpected costs.\n"
-                                   "choice (1-5)"))
+                                   "choice (1-5): "))
                 if choice == 1:
                     total_expenses += GiftCost()
                 elif choice == 2:
@@ -40,41 +42,42 @@ def Misc():
         elif option == "quit":
             is_running = False
             print("Goodbye!")
-            filename = "miscellaneous_expenses.csv"
-            with open(filename, 'w', newline='') as file:
-                writer = csv.writer(file)
-
-                
-                writer.writerow(["Gift"])
-                writer.writerow(["Amount"])
-                writer.writerows(gift_cost)
-                writer.writerow([])
-
-                writer.writerow(["Charity Donations"])
-                writer.writerow(["Amount"])
-                writer.writerows(charity_donations)
-                writer.writerow([])
-
-                writer.writerow(["Memberships"])
-                writer.writerow(["Amount"])
-                writer.writerows(memberships_cost)
-                writer.writerow([])
-
-                writer.writerow(["Developmen costs"])
-                writer.writerow(["Amount"])
-                writer.writerows(development_costs)
-                writer.writerow([])
-
-                writer.writerow(["Unexpected costs"])
-                writer.writerow(["Amount"])
-                writer.writerows(unexpected_costs)
-                writer.writerow([])
-
-                writer.writerow(["Total Expenses", total_expenses])
+            folder = os.path.join(os.path.dirname(__file__), "Files")
+            filename = os.path.join(folder, "miscellaneous_expenses.csv")
+            try:
+                os.makedirs(folder, exist_ok=True)
+                with open(filename, 'w', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(["Gift"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(gift_cost)
+                    writer.writerow([])
+                    writer.writerow(["Charity Donations"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(charity_donations)
+                    writer.writerow([])
+                    writer.writerow(["Memberships"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(memberships_cost)
+                    writer.writerow([])
+                    writer.writerow(["Development costs"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(development_costs)
+                    writer.writerow([])
+                    writer.writerow(["Unexpected costs"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(unexpected_costs)
+                    writer.writerow([])
+                    writer.writerow(["Total Expenses", total_expenses])
+            except OSError as e:
+                print(f"Could not save miscellaneous_expenses.csv: {e}")
+                traceback.print_exc()
         else:
             print("Please enter either 'continue' or 'quit'.")
             continue
     return total_expenses
+
+# Sub‑functions unchanged.
 
 
 def GiftCost():

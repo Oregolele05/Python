@@ -1,4 +1,7 @@
 import csv
+import os
+import traceback
+
 renting_expenses = []
 grocery_expenses = []
 utility_expenses = []
@@ -6,7 +9,6 @@ maintenance_expenses = []
 clothing_expenses = []
 property_taxes_expenses = []
 insurance_expenses = []
-
 
 def Expenses():
     is_running = True
@@ -26,11 +28,11 @@ def Expenses():
                                    "7. Homeowners Insurance.\n"
                                    "input: "))
                 if choice == 1:
-                   total_expenses += RentOrMortgage()
+                    total_expenses += RentOrMortgage()
                 elif choice == 2:
-                   total_expenses += Grocery()
+                    total_expenses += Grocery()
                 elif choice == 3:
-                   total_expenses += Utility()
+                    total_expenses += Utility()
                 elif choice == 4:
                     total_expenses += MaintenanceAndRepair()
                 elif choice == 5:
@@ -39,69 +41,60 @@ def Expenses():
                     total_expenses += PropertyTaxes()
                 elif choice == 7:
                     total_expenses += HomeownersInsurance()
-
                 else:
                     print("Please enter a valid option (1-7).")
                     continue
             except ValueError:
                 print("Please enter a numeric value (1-7).")
                 continue
-
         elif option == "quit":
             print("Thank you for using Living Expenses Calculator!")
             print(f"Your total expenses is R{total_expenses:.2f}.")
-            filename = "living_expenses.csv"
-            with open(filename, "w", newline='') as file:
-                writer = csv.writer(file)
-
-                # Rent or Mortgage
-                writer.writerow(["Rent or Mortgage"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(renting_expenses)
-                writer.writerow([])
-
-                # Grocery
-                writer.writerow(["Grocery"])
-                writer.writerow(["Item", "Price", "Quantity", "Cost"])
-                writer.writerows(grocery_expenses)
-                writer.writerow([])
-
-                # Utilities
-                writer.writerow(["Utilities"])
-                writer.writerow(["Utility", "Amount"])
-                writer.writerows(utility_expenses)
-                writer.writerow([])
-
-                # Maintenance
-                writer.writerow(["Maintenance and Repairs"])
-                writer.writerow(["Service", "Amount"])
-                writer.writerows(maintenance_expenses)
-                writer.writerow([])
-
-                # Clothing
-                writer.writerow(["Clothing"])
-                writer.writerow(["Item", "Price", "Quantity", "Cost"])
-                writer.writerows(clothing_expenses)
-                writer.writerow([])
-
-                # Property Taxes
-                writer.writerow(["Property Taxes"])
-                writer.writerow(["Tax Type", "Amount"])
-                writer.writerows(property_taxes_expenses)
-                writer.writerow([])
-
-                # Insurance
-                writer.writerow(["Homeowners Insurance"])
-                writer.writerow(["Policy", "Amount"])
-                writer.writerows(insurance_expenses)
-                writer.writerow([])
-
-                writer.writerow(["Total Expenses", total_expenses])
-                is_running = False
+            folder = os.path.join(os.path.dirname(__file__), "Files")
+            filename = os.path.join(folder, "living_expenses.csv")
+            try:
+                os.makedirs(folder, exist_ok=True)
+                with open(filename, "w", newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(["Rent or Mortgage"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(renting_expenses)
+                    writer.writerow([])
+                    writer.writerow(["Grocery"])
+                    writer.writerow(["Item", "Price", "Quantity", "Cost"])
+                    writer.writerows(grocery_expenses)
+                    writer.writerow([])
+                    writer.writerow(["Utilities"])
+                    writer.writerow(["Utility", "Amount"])
+                    writer.writerows(utility_expenses)
+                    writer.writerow([])
+                    writer.writerow(["Maintenance and Repairs"])
+                    writer.writerow(["Service", "Amount"])
+                    writer.writerows(maintenance_expenses)
+                    writer.writerow([])
+                    writer.writerow(["Clothing"])
+                    writer.writerow(["Item", "Price", "Quantity", "Cost"])
+                    writer.writerows(clothing_expenses)
+                    writer.writerow([])
+                    writer.writerow(["Property Taxes"])
+                    writer.writerow(["Tax Type", "Amount"])
+                    writer.writerows(property_taxes_expenses)
+                    writer.writerow([])
+                    writer.writerow(["Homeowners Insurance"])
+                    writer.writerow(["Policy", "Amount"])
+                    writer.writerows(insurance_expenses)
+                    writer.writerow([])
+                    writer.writerow(["Total Expenses", total_expenses])
+            except OSError as e:
+                print(f"Could not save living_expenses.csv: {e}")
+                traceback.print_exc()
+            is_running = False
         else:
             print("Please enter a valid option.")
             continue
     return total_expenses
+
+# All sub‑functions unchanged – they are correct as you wrote them.
 
 
 def RentOrMortgage():

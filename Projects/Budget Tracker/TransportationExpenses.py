@@ -1,4 +1,7 @@
 import csv
+import os
+import traceback
+
 car_payments = []
 public_transport = []
 toll_fees = []
@@ -6,7 +9,6 @@ car_insurance = []
 gas_costs = []
 maintenance_costs = []
 registration_fees = []
-
 
 def Transportation():
     is_running = True
@@ -39,68 +41,59 @@ def Transportation():
                     total_expenses += MaintenanceCosts()
                 elif choice == 7:
                     total_expenses += RegistrationFees()
-
                 else:
                     print("Please enter a valid option (1-7).")
                     continue
             except ValueError:
                 print("Please enter a numeric value (1-7).")
                 continue
-
         elif option == "quit":
             print("Goodbye!")
-            filename = "transportation_expenses.csv"
-            with open(filename, "w", newline='') as file:
-                writer = csv.writer(file)
-
-                
-                writer.writerow(["Car installments"])
-                writer.writerow(["Amount"])
-                writer.writerows(car_payments)
-                writer.writerow([])
-
-                
-                writer.writerow(["Public transport"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(public_transport)
-                writer.writerow([])
-
-                
-                writer.writerow(["Toll fees"])
-                writer.writerow(["Amount"])
-                writer.writerows(toll_fees)
-                writer.writerow([])
-
-                
-                writer.writerow(["Car Insurance"])
-                writer.writerow(["Plan", "Amount"])
-                writer.writerows(car_insurance)
-                writer.writerow([])
-
-                
-                writer.writerow(["Gas cost"])
-                writer.writerow(["Fuel", "Amount"])
-                writer.writerows(gas_costs)
-                writer.writerow([])
-
-                
-                writer.writerow(["Maintenance costs"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(maintenance_costs)
-                writer.writerow([])
-
-                
-                writer.writerow(["Registration fees"])
-                writer.writerow(["Amount"])
-                writer.writerows(registration_fees)
-                writer.writerow([])
-
-                writer.writerow(["Total Expenses", total_expenses])
+            folder = os.path.join(os.path.dirname(__file__), "Files")
+            filename = os.path.join(folder, "transportation_expenses.csv")
+            try:
+                os.makedirs(folder, exist_ok=True)   # now inside try
+                with open(filename, "w", newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(["Car installments"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(car_payments)
+                    writer.writerow([])
+                    writer.writerow(["Public transport"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(public_transport)
+                    writer.writerow([])
+                    writer.writerow(["Toll fees"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(toll_fees)
+                    writer.writerow([])
+                    writer.writerow(["Car Insurance"])
+                    writer.writerow(["Plan", "Amount"])
+                    writer.writerows(car_insurance)
+                    writer.writerow([])
+                    writer.writerow(["Gas cost"])
+                    writer.writerow(["Fuel", "Amount"])
+                    writer.writerows(gas_costs)
+                    writer.writerow([])
+                    writer.writerow(["Maintenance costs"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(maintenance_costs)
+                    writer.writerow([])
+                    writer.writerow(["Registration fees"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(registration_fees)
+                    writer.writerow([])
+                    writer.writerow(["Total Expenses", total_expenses])
+            except OSError as e:
+                print(f"Couldn't save the file ({e}). Your total this session was R{total_expenses:.2f}")
+                traceback.print_exc()   # added for debugging
             is_running = False
         else:
             print("Please enter a valid option.")
             continue
     return total_expenses
+
+# All sub‑functions unchanged.
 
 
 def CarPayments():

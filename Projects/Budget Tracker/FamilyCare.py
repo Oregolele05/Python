@@ -1,14 +1,16 @@
 import csv
+import os
+import traceback
+
 child_expenses = []
 school_expenses = []
 elder_costs = []
 veterinary_expenses = []
 pet_insurance = []
 
-
 def FamCare():
-    is_running = True
     total_expenses = 0
+    is_running = True
     while is_running:
         print("Welcome to the Family Expenses Calculator!")
         option = input("Would you like to continue or quit?: ").lower()
@@ -37,47 +39,45 @@ def FamCare():
             except ValueError:
                 print("Please enter a numeric value (1-5).")
                 continue
-
         elif option == "quit":
             print("Goodbye!")
-
-            filename = "family_expenses.csv"
-            with open(filename, 'w', newline='') as file:
-                writer = csv.writer(file)
-
-                # child expenses
-                writer.writerow(["Child Expenses"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(child_expenses)
-                writer.writerow([])
-
-                writer.writerow(["Schools supplies or Fees"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(school_expenses)
-                writer.writerow([])
-
-                writer.writerow(["Elderly Expenses"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(elder_costs)
-                writer.writerow([])
-
-                writer.writerow(["Veterinary Expenses"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(veterinary_expenses)
-                writer.writerow([])
-
-                writer.writerow(["Pet Insurance"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(pet_insurance)
-                writer.writerow([])
-
-                writer.writerow(["Total Expenses", total_expenses])
-
+            folder = os.path.join(os.path.dirname(__file__), "Files")
+            filename = os.path.join(folder, "family_expenses.csv")
+            try:
+                os.makedirs(folder, exist_ok=True)
+                with open(filename, 'w', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(["Child Expenses"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(child_expenses)
+                    writer.writerow([])
+                    writer.writerow(["Schools supplies or Fees"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(school_expenses)
+                    writer.writerow([])
+                    writer.writerow(["Elderly Expenses"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(elder_costs)
+                    writer.writerow([])
+                    writer.writerow(["Veterinary Expenses"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(veterinary_expenses)
+                    writer.writerow([])
+                    writer.writerow(["Pet Insurance"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(pet_insurance)
+                    writer.writerow([])
+                    writer.writerow(["Total Expenses", total_expenses])
+            except OSError as e:
+                print(f"Could not save family_expenses.csv: {e}")
+                traceback.print_exc()
             is_running = False
         else:
             print("Please enter a valid option. 'continue' or 'quit'")
             continue
     return total_expenses
+
+
 
 
 def ChildExpenses():

@@ -1,10 +1,12 @@
 import csv
+import os
+import traceback
+
 hygiene_products = []
 grooming_services = []
 laundry_dryCleaning = []
 cosmetics = []
 wellness_treatments = []
-
 
 def SelfCare():
     total_expenses = 0
@@ -36,45 +38,45 @@ def SelfCare():
             except ValueError:
                 print("Please enter a numeric value.")
                 continue
-
         elif option == "quit":
             is_running = False
             print("Goodbye!")
-            filename = "personal_expenses.csv"
-            with open(filename, 'w', newline='') as file:
-                writer = csv.writer(file)
-
-                
-                writer.writerow(["Personal hygiene"])
-                writer.writerow(["Item", "Amount"])
-                writer.writerows(hygiene_products)
-                writer.writerow([])
-
-                writer.writerow(["Hair services"])
-                writer.writerow(["Amount"])
-                writer.writerows(grooming_services)
-                writer.writerow([])
-
-                writer.writerow(["Clothing care"])
-                writer.writerow(["Amount"])
-                writer.writerows(laundry_dryCleaning)
-                writer.writerow([])
-
-                writer.writerow(["Cosmetics"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(cosmetics)
-                writer.writerow([])
-
-                writer.writerow(["Wellness treatments"])
-                writer.writerow(["Amount"])
-                writer.writerows(wellness_treatments)
-                writer.writerow([])
-
-                writer.writerow(["Total Expenses", total_expenses])
+            folder = os.path.join(os.path.dirname(__file__), "Files")
+            filename = os.path.join(folder, "personal_expenses.csv")
+            try:
+                os.makedirs(folder, exist_ok=True)
+                with open(filename, 'w', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(["Personal hygiene"])
+                    writer.writerow(["Item", "Amount"])
+                    writer.writerows(hygiene_products)
+                    writer.writerow([])
+                    writer.writerow(["Hair services"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(grooming_services)
+                    writer.writerow([])
+                    writer.writerow(["Clothing care"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(laundry_dryCleaning)
+                    writer.writerow([])
+                    writer.writerow(["Cosmetics"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(cosmetics)
+                    writer.writerow([])
+                    writer.writerow(["Wellness treatments"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(wellness_treatments)
+                    writer.writerow([])
+                    writer.writerow(["Total Expenses", total_expenses])
+            except OSError as e:
+                print(f"Could not save personal_expenses.csv: {e}")
+                traceback.print_exc()
         else:
             print("Please enter either 'continue' or 'quit'.")
             continue
     return total_expenses
+
+# Sub‑functions unchanged.
 
 
 def PersonalHygiene():

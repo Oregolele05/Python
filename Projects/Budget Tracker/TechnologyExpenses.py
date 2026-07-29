@@ -1,11 +1,13 @@
 import csv
+import os
+import traceback
+
 device_cost = []
 internet_plan = []
 computer_payments = []
 streaming_payments = []
 gaming_subscriptions = []
 tech_parts = []
-
 
 def TechServices():
     total_expenses = 0
@@ -41,49 +43,49 @@ def TechServices():
             except ValueError:
                 print("Please enter a valid choice.")
                 continue
-
         elif option == "quit":
             print("Goodbye!")
-            filename = "technology_expenses.csv"
-            with open(filename, 'w', newline='') as file:
-                writer = csv.writer(file)
-
-                writer.writerow(["Electronic device costs"])
-                writer.writerow(["Electronic", "Amount"])
-                writer.writerows(device_cost)
-                writer.writerow([])
-
-                writer.writerow(["Internet services"])
-                writer.writerow(["Plan", "Amount"])
-                writer.writerows(internet_plan)
-                writer.writerow([])
-
-                writer.writerow(["Computer components"])
-                writer.writerow(["Component", "Amount"])
-                writer.writerows(computer_payments)
-                writer.writerow([])
-
-                writer.writerow(["Streaming services"])
-                writer.writerow(["Platform", "Amount"])
-                writer.writerows(streaming_payments)
-                writer.writerow([])
-
-                writer.writerow(["Gaming subscriptions"])
-                writer.writerow(["Plan", "Amount"])
-                writer.writerows(gaming_subscriptions)
-                writer.writerow([])
-
-                writer.writerow(["Tech accessories"])
-                writer.writerow(["Type", "Amount"])
-                writer.writerows(tech_parts)
-                writer.writerow([])
-
-                writer.writerow(["Total Expenses", total_expenses])
+            folder = os.path.join(os.path.dirname(__file__), "Files")
+            filename = os.path.join(folder, "technology_expenses.csv")
+            try:
+                os.makedirs(folder, exist_ok=True)
+                with open(filename, 'w', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(["Electronic device costs"])
+                    writer.writerow(["Electronic", "Amount"])
+                    writer.writerows(device_cost)
+                    writer.writerow([])
+                    writer.writerow(["Internet services"])
+                    writer.writerow(["Plan", "Amount"])
+                    writer.writerows(internet_plan)
+                    writer.writerow([])
+                    writer.writerow(["Computer components"])
+                    writer.writerow(["Component", "Amount"])
+                    writer.writerows(computer_payments)
+                    writer.writerow([])
+                    writer.writerow(["Streaming services"])
+                    writer.writerow(["Platform", "Amount"])
+                    writer.writerows(streaming_payments)
+                    writer.writerow([])
+                    writer.writerow(["Gaming subscriptions"])
+                    writer.writerow(["Plan", "Amount"])
+                    writer.writerows(gaming_subscriptions)
+                    writer.writerow([])
+                    writer.writerow(["Tech accessories"])
+                    writer.writerow(["Type", "Amount"])
+                    writer.writerows(tech_parts)
+                    writer.writerow([])
+                    writer.writerow(["Total Expenses", total_expenses])
+            except OSError as e:
+                print(f"Could not save technology_expenses.csv: {e}")
+                traceback.print_exc()
             is_running = False
         else:
             print("Please enter either 'continue' or 'quit'.")
             continue
     return total_expenses
+
+# All sub‑functions unchanged.
 
 
 def SmartphoneAndDevices():

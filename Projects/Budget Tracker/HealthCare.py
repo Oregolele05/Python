@@ -1,26 +1,28 @@
 import csv
+import os
+import traceback
+
 prescription_meds = []
 prepaid_meds = []
 doctor_visits = []
 specialist_visit = []
 memberships = []
 
-
 def Medical():
     total_expenses = 0
     is_running = True
     while is_running:
         print("Welcome to the Health Care Calculator!")
-        option = input("Would you like to continue or quit").lower()
+        option = input("Would you like to continue or quit? ").lower()
         if option == "continue":
             try:
-                choice = int(input("Would you like to do?\n"
+                choice = int(input("What would you like to do?\n"
                                    "1. Prescription Meds\n"
                                    "2. Prepaid Meds\n"
                                    "3. Doctor Visits\n"
                                    "4. Specialist Visits\n"
                                    "5. Memberships\n"
-                                   "choice"))
+                                   "choice: "))
                 if choice == 1:
                     total_expenses += PrescriptionMeds()
                 elif choice == 2:
@@ -40,37 +42,36 @@ def Medical():
         elif option == "quit":
             is_running = False
             print("Thank you for your time")
-            filename = "health_expenses.csv"
-            with open(filename, 'w', newline='') as file:
-                writer = csv.writer(file)
-
-                
-                writer.writerow(["Prescription medication costs"])
-                writer.writerow(["Amount"])
-                writer.writerows(prescription_meds)
-                writer.writerow([])
-
-                writer.writerow(["Over the counter medication costs"])
-                writer.writerow(["Amount"])
-                writer.writerows(prepaid_meds)
-                writer.writerow([])
-
-                writer.writerow(["Doctor visits"])
-                writer.writerow(["Amount"])
-                writer.writerows(doctor_visits)
-                writer.writerow([])
-
-                writer.writerow(["Specialist visit"])
-                writer.writerow(["Amount"])
-                writer.writerows(specialist_visit)
-                writer.writerow([])
-
-                writer.writerow(["Medical aid"])
-                writer.writerow(["Amount"])
-                writer.writerows(memberships)
-                writer.writerow([])
-
-                writer.writerow(["Total Expenses", total_expenses])
+            folder = os.path.join(os.path.dirname(__file__), "Files")
+            filename = os.path.join(folder, "health_expenses.csv")
+            try:
+                os.makedirs(folder, exist_ok=True)
+                with open(filename, 'w', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow(["Prescription medication costs"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(prescription_meds)
+                    writer.writerow([])
+                    writer.writerow(["Over the counter medication costs"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(prepaid_meds)
+                    writer.writerow([])
+                    writer.writerow(["Doctor visits"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(doctor_visits)
+                    writer.writerow([])
+                    writer.writerow(["Specialist visit"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(specialist_visit)
+                    writer.writerow([])
+                    writer.writerow(["Medical aid"])
+                    writer.writerow(["Amount"])
+                    writer.writerows(memberships)
+                    writer.writerow([])
+                    writer.writerow(["Total Expenses", total_expenses])
+            except OSError as e:
+                print(f"Could not save health_expenses.csv: {e}")
+                traceback.print_exc()
         else:
             print("Please enter either 'continue' or 'quit'")
             continue
@@ -210,7 +211,7 @@ def Memberships():
             try:
                 price = float(input("Please enter your membership price: "))
                 if price > 0:
-                    print("Your membership price is R{price:.2f}")
+                    print(f"Your membership price is R{price:.2f}")
                     memberships.append([price])
                     return price
                 else:
