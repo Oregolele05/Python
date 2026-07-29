@@ -1,3 +1,4 @@
+import csv
 car_payments = []
 public_transport = []
 toll_fees = []
@@ -5,6 +6,7 @@ car_insurance = []
 gas_costs = []
 maintenance_costs = []
 registration_fees = []
+
 
 def Transportation():
     is_running = True
@@ -46,11 +48,60 @@ def Transportation():
                 continue
 
         elif option == "quit":
+            print("Goodbye!")
+            filename = "transportation_expenses.csv"
+            with open(filename, "w", newline="") as file:
+                writer = csv.writer(file)
+
+                
+                writer.writerow(["Car installments"])
+                writer.writerow(["Amount"])
+                writer.writerows(car_payments)
+                writer.writerow([])
+
+                
+                writer.writerow(["Public transport"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerows(public_transport)
+                writer.writerow([])
+
+                
+                writer.writerow(["Toll fees"])
+                writer.writerow(["Amount"])
+                writer.writerows(toll_fees)
+                writer.writerow([])
+
+                
+                writer.writerow(["Car Insurance"])
+                writer.writerow(["Plan", "Amount"])
+                writer.writerows(car_insurance)
+                writer.writerow([])
+
+                
+                writer.writerow(["Gas cost"])
+                writer.writerow(["Fuel", "Amount"])
+                writer.writerows(gas_costs)
+                writer.writerow([])
+
+                
+                writer.writerow(["Maintenance costs"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerows(maintenance_costs)
+                writer.writerow([])
+
+                
+                writer.writerow(["Registration fees"])
+                writer.writerow(["Amount"])
+                writer.writerows(registration_fees)
+                writer.writerow([])
+
+                writer.writerow(["Total Expenses", total_expenses])
             is_running = False
         else:
             print("Please enter a valid option.")
             continue
     return total_expenses
+
 
 def CarPayments():
     is_running = True
@@ -71,7 +122,8 @@ def CarPayments():
                         continue
                     else:
                         print(f"Your car model is {model}.")
-                installment = float(input("How much was your car installment?: "))
+                installment = float(
+                    input("How much was your car installment?: "))
                 if installment > 0:
                     print(f"Your car installment is: R{installment:.2f}")
                     car_payments.append([
@@ -105,18 +157,19 @@ def PublicTransport():
         if option == "continue":
             try:
                 mode = int(input("What mode transport did you use? (1-5)\n"
-                             "1. Bus.\n"
-                             "2. Taxi.\n"
-                             "3. Train.\n"
-                             "4. E-hailing.\n"
-                             "5. Plane.\n"                       
-                             "input: "))
+                                 "1. Bus.\n"
+                                 "2. Taxi.\n"
+                                 "3. Train.\n"
+                                 "4. E-hailing.\n"
+                                 "5. Plane.\n"
+                                 "input: "))
                 if mode == 1:
                     try:
                         bus = transport[0]
                         fair = int(input(f"How much was the {bus} fair?: "))
                         if fair > 0:
-                            count = int(input(f"How many times did you us the {bus}"))
+                            count = int(
+                                input(f"How many times did you us the {bus}"))
                             if count > 0:
                                 amount = fair * count
                                 public_transport.append([
@@ -127,7 +180,8 @@ def PublicTransport():
                                 ])
                                 return amount
                             else:
-                                print("Your fair cannot be less than or equal to zero.")
+                                print(
+                                    "Your fair cannot be less than or equal to zero.")
                                 continue
                         else:
                             print("Your fair cannot be less than or equal to zero.")
@@ -141,7 +195,8 @@ def PublicTransport():
                         taxi = transport[1]
                         fair = int(input(f"How much was the {taxi} fair?: "))
                         if fair > 0:
-                            count = int(input(f"How many times did you us the {taxi}"))
+                            count = int(
+                                input(f"How many times did you us the {taxi}"))
                             if count > 0:
                                 amount = fair * count
                                 public_transport.append([
@@ -152,7 +207,8 @@ def PublicTransport():
                                 ])
                                 return amount
                             else:
-                                print("Your fair cannot be less than or equal to zero.")
+                                print(
+                                    "Your fair cannot be less than or equal to zero.")
                                 continue
                         else:
                             print("Your fair cannot be less than or equal to zero.")
@@ -165,7 +221,8 @@ def PublicTransport():
                         train = transport[2]
                         fair = int(input(f"How much was the {train} fair?: "))
                         if fair > 0:
-                            count = int(input(f"How many times did you us the {train}"))
+                            count = int(
+                                input(f"How many times did you us the {train}"))
                             if count > 0:
                                 amount = fair * count
                                 public_transport.append([
@@ -176,7 +233,8 @@ def PublicTransport():
                                 ])
                                 return amount
                             else:
-                                print("Your fair cannot be less than or equal to zero.")
+                                print(
+                                    "Your fair cannot be less than or equal to zero.")
                                 continue
                         else:
                             print("Your fair cannot be less than or equal to zero.")
@@ -187,9 +245,11 @@ def PublicTransport():
                 elif mode == 4:
                     try:
                         e_hailing = transport[3]
-                        fair = int(input(f"How much was the {e_hailing} fair?: "))
+                        fair = int(
+                            input(f"How much was the {e_hailing} fair?: "))
                         if fair > 0:
-                            count = int(input(f"How many times did you us the {e_hailing}"))
+                            count = int(
+                                input(f"How many times did you us the {e_hailing}"))
                             if count > 0:
                                 amount = fair * count
                                 public_transport.append([
@@ -200,7 +260,8 @@ def PublicTransport():
                                 ])
                                 return amount
                             else:
-                                print("Your fair cannot be less than or equal to zero.")
+                                print(
+                                    "Your fair cannot be less than or equal to zero.")
                                 continue
                         else:
                             print("Your fair cannot be less than or equal to zero.")
@@ -213,7 +274,8 @@ def PublicTransport():
                         plane = transport[4]
                         fair = int(input(f"How much was the {plane} fair?: R"))
                         if fair > 0:
-                            count = int(input(f"How many times did you us the {plane}"))
+                            count = int(
+                                input(f"How many times did you us the {plane}"))
                             if count > 0:
                                 amount = fair * count
                                 public_transport.append([
@@ -224,7 +286,8 @@ def PublicTransport():
                                 ])
                                 return amount
                             else:
-                                print("Your fair cannot be less than or equal to zero.")
+                                print(
+                                    "Your fair cannot be less than or equal to zero.")
                                 continue
                         else:
                             print("Your fair cannot be less than or equal to zero.")
@@ -274,7 +337,8 @@ def TollFees():
 
 
 def CarInsurance():
-    insurance = ["Roadside Assistance", "Scratch & Dent, Wheel & Tyre Cover", "Comprehensive Coverage", "Uninsured/Underinsured Motorist Coverage"]
+    insurance = ["Roadside Assistance", "Scratch & Dent, Wheel & Tyre Cover",
+                 "Comprehensive Coverage", "Uninsured/Underinsured Motorist Coverage"]
     is_running = True
     while is_running:
         print("Welcome to the Car Insurance Calculator.")
@@ -369,6 +433,7 @@ def CarInsurance():
             continue
     return 0
 
+
 def GasCosts():
     is_running = True
     fuel = ["Diesel", "Petrol 93", "Petrol 95"]
@@ -385,9 +450,11 @@ def GasCosts():
                 if gas == 1:
                     fuel_range = fuel[0]
                     try:
-                        price = float(input(f"How much {fuel_range} did you pour: R"))
+                        price = float(
+                            input(f"How much {fuel_range} did you pour: R"))
                         if price > 0:
-                            print(f"Your total cost for {fuel_range} is : R{price:.2f}")
+                            print(
+                                f"Your total cost for {fuel_range} is : R{price:.2f}")
                             gas_costs.append([
                                 fuel_range,
                                 price
@@ -402,9 +469,11 @@ def GasCosts():
                 elif gas == 2:
                     fuel_range = fuel[1]
                     try:
-                        price = float(input(f"How much {fuel_range} did you pour: R"))
+                        price = float(
+                            input(f"How much {fuel_range} did you pour: R"))
                         if price > 0:
-                            print(f"Your total cost for {fuel_range} is : R{price:.2f}")
+                            print(
+                                f"Your total cost for {fuel_range} is : R{price:.2f}")
                             gas_costs.append([
                                 fuel_range,
                                 price
@@ -419,9 +488,11 @@ def GasCosts():
                 elif gas == 3:
                     fuel_range = fuel[2]
                     try:
-                        price = float(input(f"How much {fuel_range} did you pour: R"))
+                        price = float(
+                            input(f"How much {fuel_range} did you pour: R"))
                         if price > 0:
-                            print(f"Your total cost for {fuel_range} is : R{price:.2f}")
+                            print(
+                                f"Your total cost for {fuel_range} is : R{price:.2f}")
                             gas_costs.append([
                                 fuel_range,
                                 price
@@ -449,8 +520,10 @@ def GasCosts():
 
 
 def MaintenanceCosts():
-    repairs = ["Brake Repairs", "Suspension Repairs", "Engine Repairs", "Electrical Repairs", "Tyre & Wheel Services"]
-    maintenance = ["Oil Change", "Minor Service", "Major Service", "Wheel Alignment", "Tyre Rotation"]
+    repairs = ["Brake Repairs", "Suspension Repairs",
+               "Engine Repairs", "Electrical Repairs", "Tyre & Wheel Services"]
+    maintenance = ["Oil Change", "Minor Service",
+                   "Major Service", "Wheel Alignment", "Tyre Rotation"]
     is_running = True
     while is_running:
         print("Welcome to the Maintenance and Repairs Calculator.")
@@ -474,66 +547,76 @@ def MaintenanceCosts():
                             auto = repairs[0]
                             fees = float(input(f"How much was {auto}?\n"))
                             if fees > 0:
-                                print(f"Your total cost for {auto} is : R{fees:.2f}")
+                                print(
+                                    f"Your total cost for {auto} is : R{fees:.2f}")
                                 maintenance_costs.append([
                                     auto,
                                     fees
                                 ])
                                 return fees
                             else:
-                                print("Your total cannot be less than or equal to zero.")
+                                print(
+                                    "Your total cannot be less than or equal to zero.")
                                 continue
                         elif service == 2:
                             auto = repairs[1]
                             fees = float(input(f"How much was {auto}?\n"))
                             if fees > 0:
-                                print(f"Your total cost for {auto} is : R{fees:.2f}")
+                                print(
+                                    f"Your total cost for {auto} is : R{fees:.2f}")
                                 maintenance_costs.append([
                                     auto,
                                     fees
                                 ])
                                 return fees
                             else:
-                                print("Your total cannot be less than or equal to zero.")
+                                print(
+                                    "Your total cannot be less than or equal to zero.")
                                 continue
                         elif service == 3:
                             auto = repairs[2]
                             fees = float(input(f"How much was {auto}?\n"))
                             if fees > 0:
-                                print(f"Your total cost for {auto} is : R{fees:.2f}")
+                                print(
+                                    f"Your total cost for {auto} is : R{fees:.2f}")
                                 maintenance_costs.append([
                                     auto,
                                     fees
                                 ])
                                 return fees
                             else:
-                                print("Your total cannot be less than or equal to zero.")
+                                print(
+                                    "Your total cannot be less than or equal to zero.")
                                 continue
                         elif service == 4:
                             auto = repairs[3]
                             fees = float(input(f"How much was {auto}?\n"))
                             if fees > 0:
-                                print(f"Your total cost for {auto} is : R{fees:.2f}")
+                                print(
+                                    f"Your total cost for {auto} is : R{fees:.2f}")
                                 maintenance_costs.append([
                                     auto,
                                     fees
                                 ])
                                 return fees
                             else:
-                                print("Your total cannot be less than or equal to zero.")
+                                print(
+                                    "Your total cannot be less than or equal to zero.")
                                 continue
                         elif service == 5:
                             auto = repairs[4]
                             fees = float(input(f"How much was {auto}?\n"))
                             if fees > 0:
-                                print(f"Your total cost for {auto} is : R{fees:.2f}")
+                                print(
+                                    f"Your total cost for {auto} is : R{fees:.2f}")
                                 maintenance_costs.append([
                                     auto,
                                     fees
                                 ])
                                 return fees
                             else:
-                                print("Your total cannot be less than or equal to zero.")
+                                print(
+                                    "Your total cannot be less than or equal to zero.")
                                 continue
                         else:
                             print("Please enter a valid option. (1-5)")
@@ -554,66 +637,76 @@ def MaintenanceCosts():
                             auto = maintenance[0]
                             fees = float(input(f"How much was {auto}?\n"))
                             if fees > 0:
-                                print(f"Your total cost for {auto} is : R{fees:.2f}")
+                                print(
+                                    f"Your total cost for {auto} is : R{fees:.2f}")
                                 maintenance_costs.append([
                                     auto,
                                     fees
                                 ])
                                 return fees
                             else:
-                                print("Your total cannot be less than or equal to zero.")
+                                print(
+                                    "Your total cannot be less than or equal to zero.")
                                 continue
                         elif service == 2:
                             auto = maintenance[1]
                             fees = float(input(f"How much was {auto}?\n"))
                             if fees > 0:
-                                print(f"Your total cost for {auto} is : R{fees:.2f}")
+                                print(
+                                    f"Your total cost for {auto} is : R{fees:.2f}")
                                 maintenance_costs.append([
                                     auto,
                                     fees
                                 ])
                                 return fees
                             else:
-                                print("Your total cannot be less than or equal to zero.")
+                                print(
+                                    "Your total cannot be less than or equal to zero.")
                                 continue
                         elif service == 3:
                             auto = maintenance[2]
                             fees = float(input(f"How much was {auto}?\n"))
                             if fees > 0:
-                                print(f"Your total cost for {auto} is : R{fees:.2f}")
+                                print(
+                                    f"Your total cost for {auto} is : R{fees:.2f}")
                                 maintenance_costs.append([
                                     auto,
                                     fees
                                 ])
                                 return fees
                             else:
-                                print("Your total cannot be less than or equal to zero.")
+                                print(
+                                    "Your total cannot be less than or equal to zero.")
                                 continue
                         elif service == 4:
                             auto = maintenance[3]
                             fees = float(input(f"How much was {auto}?\n"))
                             if fees > 0:
-                                print(f"Your total cost for {auto} is : R{fees:.2f}")
+                                print(
+                                    f"Your total cost for {auto} is : R{fees:.2f}")
                                 maintenance_costs.append([
                                     auto,
                                     fees
                                 ])
                                 return fees
                             else:
-                                print("Your total cannot be less than or equal to zero.")
+                                print(
+                                    "Your total cannot be less than or equal to zero.")
                                 continue
                         elif service == 5:
                             auto = maintenance[4]
                             fees = float(input(f"How much was {auto}?\n"))
                             if fees > 0:
-                                print(f"Your total cost for {auto} is : R{fees:.2f}")
+                                print(
+                                    f"Your total cost for {auto} is : R{fees:.2f}")
                                 maintenance_costs.append([
                                     auto,
                                     fees
                                 ])
                                 return fees
                             else:
-                                print("Your total cannot be less than or equal to zero.")
+                                print(
+                                    "Your total cannot be less than or equal to zero.")
                                 continue
                         else:
                             print("Please enter a valid option. (1-5)")

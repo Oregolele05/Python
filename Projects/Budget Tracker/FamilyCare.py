@@ -1,8 +1,10 @@
+import csv
 child_expenses = []
 school_expenses = []
 elder_costs = []
 veterinary_expenses = []
 pet_insurance = []
+
 
 def FamCare():
     is_running = True
@@ -37,6 +39,40 @@ def FamCare():
                 continue
 
         elif option == "quit":
+            print("Goodbye!")
+
+            filename = "family_expenses.csv"
+            with open(filename, 'w', newline=' ') as file:
+                writer = csv.writer(file)
+
+                # child expenses
+                writer.writerow(["Child Expenses"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerow(child_expenses)
+                writer.writerow([])
+
+                writer.writerow(["Schools supplies or Fees"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerow(school_expenses)
+                writer.writerow([])
+
+                writer.writerow(["Elderly Expenses"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerow(elder_costs)
+                writer.writerow([])
+
+                writer.writerow(["Veterinary Expenses"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerow(veterinary_expenses)
+                writer.writerow([])
+
+                writer.writerow(["Pet Insurance"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerow(pet_insurance)
+                writer.writerow([])
+
+                writer.writerow(["Total Expenses", total_expenses])
+
             is_running = False
         else:
             print("Please enter a valid option. 'continue' or 'quit'")
@@ -60,7 +96,8 @@ def ChildExpenses():
                 if choice == 1:
                     try:
                         child = care[0]
-                        fees = float(input(f"How much was the {child} expenses?: R"))
+                        fees = float(
+                            input(f"How much was the {child} expenses?: R"))
                         if fees > 0:
                             print(f"Your total cost is R{fees:.2f}.")
                             child_expenses.append([
@@ -77,7 +114,8 @@ def ChildExpenses():
                 elif choice == 2:
                     try:
                         child = care[1]
-                        fees = float(input(f"How much was the {child} expenses?: R"))
+                        fees = float(
+                            input(f"How much was the {child} expenses?: R"))
                         if fees > 0:
                             print(f"Your total cost is R{fees:.2f}.")
                             child_expenses.append([
@@ -94,7 +132,8 @@ def ChildExpenses():
                 elif choice == 3:
                     try:
                         child = care[2]
-                        fees = float(input(f"How much was the {child} expenses?: R"))
+                        fees = float(
+                            input(f"How much was the {child} expenses?: R"))
                         if fees > 0:
                             print(f"Your total cost is R{fees:.2f}.")
                             child_expenses.append([
@@ -123,7 +162,6 @@ def ChildExpenses():
     return 0
 
 
-
 def SchoolExpenses():
     school = ["Supplies", "Fees"]
     is_running = True
@@ -139,7 +177,8 @@ def SchoolExpenses():
                 if choice == 1:
                     supplies = school[0]
                     try:
-                        price = float(input(f"How much was the {supplies} expenses?: R"))
+                        price = float(
+                            input(f"How much was the {supplies} expenses?: R"))
                         if price > 0:
                             print(f"Your total cost is R{price:.2f}.")
                             school_expenses.append([
@@ -156,7 +195,8 @@ def SchoolExpenses():
                 elif choice == 2:
                     fees = school[1]
                     try:
-                        price = float(input(f"How much was the {fees} expenses?: R"))
+                        price = float(
+                            input(f"How much was the {fees} expenses?: R"))
                         if price > 0:
                             print(f"Your total cost is R{price:.2f}.")
                             school_expenses.append([
@@ -327,7 +367,8 @@ def VeterinaryExpenses():
 
 def PetInsurance():
     is_running = True
-    insurance = ["Accident-Only Plans", "Illness-Only Plans", "Wellness Plans", "Comprehensive / Extensive Plans"]
+    insurance = ["Accident-Only Plans", "Illness-Only Plans",
+                 "Wellness Plans", "Comprehensive / Extensive Plans"]
     while is_running:
         print("Welcome to the Pet Insurance Calculator!")
         option = input("Would you like to continue or quit?: ").lower()

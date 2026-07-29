@@ -1,8 +1,10 @@
+import csv
 hygiene_products = []
 grooming_services = []
 laundry_dryCleaning = []
 cosmetics = []
 wellness_treatments = []
+
 
 def SelfCare():
     total_expenses = 0
@@ -38,6 +40,37 @@ def SelfCare():
         elif option == "quit":
             is_running = False
             print("Goodbye!")
+            filename = "personal_expenses.csv"
+            with open(filename, 'w', newline=' ') as file:
+                writer = csv.writer(file)
+
+                
+                writer.writerow(["Personal hygiene"])
+                writer.writerow(["Item", "Amount"])
+                writer.writerow(hygiene_products)
+                writer.writerow([])
+
+                writer.writerow(["Hair services"])
+                writer.writerow(["Amount"])
+                writer.writerow(grooming_services)
+                writer.writerow([])
+
+                writer.writerow(["Clothing care"])
+                writer.writerow(["Amount"])
+                writer.writerow(laundry_dryCleaning)
+                writer.writerow([])
+
+                writer.writerow(["Cosmetics"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerow(cosmetics)
+                writer.writerow([])
+
+                writer.writerow(["Wellness treatments"])
+                writer.writerow(["Amount"])
+                writer.writerow(wellness_treatments)
+                writer.writerow([])
+
+                writer.writerow(["Total Expenses", total_expenses])
         else:
             print("Please enter either 'continue' or 'quit'.")
             continue
@@ -45,7 +78,8 @@ def SelfCare():
 
 
 def PersonalHygiene():
-    hygiene = ["Soap or Body Wash", "Deodorant", "Toilet paper", "Moisturizer", "Toothbrush and Toothpaste"]
+    hygiene = ["Soap or Body Wash", "Deodorant", "Toilet paper",
+               "Moisturizer", "Toothbrush and Toothpaste"]
     is_running = True
     while is_running:
         print("Welcome to the Personal Hygiene calculator.")
@@ -62,7 +96,8 @@ def PersonalHygiene():
                 if choice == 1:
                     product = hygiene[0]
                     try:
-                        price = float(input(f"How much did you spend on {product}: R"))
+                        price = float(
+                            input(f"How much did you spend on {product}: R"))
                         if price > 0:
                             print(f"You spent R{price:.2f} on {product}.")
                             hygiene_products.append([
@@ -79,7 +114,8 @@ def PersonalHygiene():
                 elif choice == 2:
                     product = hygiene[1]
                     try:
-                        price = float(input(f"How much did you spend on {product}: R"))
+                        price = float(
+                            input(f"How much did you spend on {product}: R"))
                         if price > 0:
                             print(f"You spent R{price:.2f} on {product}.")
                             hygiene_products.append([
@@ -96,7 +132,8 @@ def PersonalHygiene():
                 elif choice == 3:
                     product = hygiene[2]
                     try:
-                        price = float(input(f"How much did you spend on {product}: R"))
+                        price = float(
+                            input(f"How much did you spend on {product}: R"))
                         if price > 0:
                             print(f"You spent R{price:.2f} on {product}.")
                             hygiene_products.append([
@@ -113,7 +150,8 @@ def PersonalHygiene():
                 elif choice == 4:
                     product = hygiene[3]
                     try:
-                        price = float(input(f"How much did you spend on {product}: R"))
+                        price = float(
+                            input(f"How much did you spend on {product}: R"))
                         if price > 0:
                             print(f"You spent R{price:.2f} on {product}.")
                             hygiene_products.append([
@@ -130,7 +168,8 @@ def PersonalHygiene():
                 elif choice == 5:
                     product = hygiene[4]
                     try:
-                        price = float(input(f"How much did you spend on {product}: R"))
+                        price = float(
+                            input(f"How much did you spend on {product}: R"))
                         if price > 0:
                             print(f"You spent R{price:.2f} on {product}.")
                             hygiene_products.append([
@@ -157,6 +196,7 @@ def PersonalHygiene():
             print("Please enter either 'continue' or 'quit'.")
             continue
     return 0
+
 
 def SalonAndBarber():
     is_running = True
@@ -194,7 +234,8 @@ def LaundryAndDryCleaning():
             try:
                 price = float(input("How much did you pay?: R"))
                 if price > 0:
-                    print(f"You paid R{price:.2f} for laundry and dry cleaning.")
+                    print(
+                        f"You paid R{price:.2f} for laundry and dry cleaning.")
                     laundry_dryCleaning.append([price])
                     return price
                 else:
@@ -229,7 +270,8 @@ def Cosmetics():
                 if choice == 1:
                     cos = products[0]
                     try:
-                        price =float(input(f"How much did you pay for {cos}?: R"))
+                        price = float(
+                            input(f"How much did you pay for {cos}?: R"))
                         if price > 0:
                             print(f"You paid R{price:.2f} for {cos}.")
                             cosmetics.append([
@@ -246,7 +288,8 @@ def Cosmetics():
                 elif choice == 2:
                     cos = products[1]
                     try:
-                        price = float(input(f"How much did you pay for {cos}?: R"))
+                        price = float(
+                            input(f"How much did you pay for {cos}?: R"))
                         if price > 0:
                             print(f"You paid R{price:.2f} for {cos}.")
                             cosmetics.append([
@@ -263,7 +306,8 @@ def Cosmetics():
                 elif choice == 3:
                     cos = products[2]
                     try:
-                        price = float(input(f"How much did you pay for {cos}?: R"))
+                        price = float(
+                            input(f"How much did you pay for {cos}?: R"))
                         if price > 0:
                             print(f"You paid R{price:.2f} for {cos}.")
                             cosmetics.append([
@@ -280,7 +324,8 @@ def Cosmetics():
                 elif choice == 4:
                     cos = products[3]
                     try:
-                        price = float(input(f"How much did you pay for {cos}?: R"))
+                        price = float(
+                            input(f"How much did you pay for {cos}?: R"))
                         if price > 0:
                             print(f"You paid R{price:.2f} for {cos}.")
                             cosmetics.append([
@@ -307,6 +352,7 @@ def Cosmetics():
             print("Please enter either 'continue' or 'quit'.")
             continue
     return 0
+
 
 def WellnessTreatments():
     is_running = True

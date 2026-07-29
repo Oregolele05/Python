@@ -1,8 +1,10 @@
+import csv
 gift_cost = []
 charity_donations = []
 memberships_cost = []
 development_costs = []
 unexpected_costs = []
+
 
 def Misc():
     total_expenses = 0
@@ -38,6 +40,37 @@ def Misc():
         elif option == "quit":
             is_running = False
             print("Goodbye!")
+            filename = "miscellaneous_expenses.csv"
+            with open(filename, 'w', newline=' ') as file:
+                writer = csv.writer(file)
+
+                
+                writer.writerow(["Gift"])
+                writer.writerow(["Amount"])
+                writer.writerow(gift_cost)
+                writer.writerow([])
+
+                writer.writerow(["Charity Donations"])
+                writer.writerow(["Amount"])
+                writer.writerow(charity_donations)
+                writer.writerow([])
+
+                writer.writerow(["Memberships"])
+                writer.writerow(["Amount"])
+                writer.writerow(memberships_cost)
+                writer.writerow([])
+
+                writer.writerow(["Developmen costs"])
+                writer.writerow(["Amount"])
+                writer.writerow(development_costs)
+                writer.writerow([])
+
+                writer.writerow(["Unexpected costs"])
+                writer.writerow(["Amount"])
+                writer.writerow(unexpected_costs)
+                writer.writerow([])
+
+                writer.writerow(["Total Expenses", total_expenses])
         else:
             print("Please enter either 'continue' or 'quit'.")
             continue

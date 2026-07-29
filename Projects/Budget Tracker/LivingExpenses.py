@@ -1,3 +1,4 @@
+import csv
 renting_expenses = []
 grocery_expenses = []
 utility_expenses = []
@@ -5,6 +6,7 @@ maintenance_expenses = []
 clothing_expenses = []
 property_taxes_expenses = []
 insurance_expenses = []
+
 
 def Expenses():
     is_running = True
@@ -48,7 +50,54 @@ def Expenses():
         elif option == "quit":
             print("Thank you for using Living Expenses Calculator!")
             print(f"Your total expenses is R{total_expenses:.2f}.")
-            is_running = False
+            filename = "living_expenses.csv"
+            with open(filename, "w", newline="") as file:
+                writer = csv.writer(file)
+
+                # Rent or Mortgage
+                writer.writerow(["Rent or Mortgage"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerows(renting_expenses)
+                writer.writerow([])
+
+                # Grocery
+                writer.writerow(["Grocery"])
+                writer.writerow(["Item", "Price", "Quantity", "Cost"])
+                writer.writerows(grocery_expenses)
+                writer.writerow([])
+
+                # Utilities
+                writer.writerow(["Utilities"])
+                writer.writerow(["Utility", "Amount"])
+                writer.writerows(utility_expenses)
+                writer.writerow([])
+
+                # Maintenance
+                writer.writerow(["Maintenance and Repairs"])
+                writer.writerow(["Service", "Amount"])
+                writer.writerows(maintenance_expenses)
+                writer.writerow([])
+
+                # Clothing
+                writer.writerow(["Clothing"])
+                writer.writerow(["Item", "Price", "Quantity", "Cost"])
+                writer.writerows(clothing_expenses)
+                writer.writerow([])
+
+                # Property Taxes
+                writer.writerow(["Property Taxes"])
+                writer.writerow(["Tax Type", "Amount"])
+                writer.writerows(property_taxes_expenses)
+                writer.writerow([])
+
+                # Insurance
+                writer.writerow(["Homeowners Insurance"])
+                writer.writerow(["Policy", "Amount"])
+                writer.writerows(insurance_expenses)
+                writer.writerow([])
+
+                writer.writerow(["Total Expenses", total_expenses])
+                is_running = False
         else:
             print("Please enter a valid option.")
             continue

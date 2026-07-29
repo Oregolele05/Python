@@ -1,13 +1,15 @@
+import csv
 prescription_meds = []
-prepaid_meds =[]
+prepaid_meds = []
 doctor_visits = []
 specialist_visit = []
 memberships = []
 
+
 def Medical():
     total_expenses = 0
-    is_running =True
-    while is_running :
+    is_running = True
+    while is_running:
         print("Welcome to the Health Care Calculator!")
         option = input("Would you like to continue or quit").lower()
         if option == "continue":
@@ -38,6 +40,37 @@ def Medical():
         elif option == "quit":
             is_running = False
             print("Thank you for your time")
+            filename = "health_expenses.csv"
+            with open(filename, 'w', newline='') as file:
+                writer = csv.writer(file)
+
+                
+                writer.writerow(["Prescription medication costs"])
+                writer.writerow(["Amount"])
+                writer.writerow(prescription_meds)
+                writer.writerow([])
+
+                writer.writerow(["Over the counter medication costs"])
+                writer.writerow(["Amount"])
+                writer.writerow(prepaid_meds)
+                writer.writerow([])
+
+                writer.writerow(["Doctor visits"])
+                writer.writerow(["Amount"])
+                writer.writerow(doctor_visits)
+                writer.writerow([])
+
+                writer.writerow(["Specialist visit"])
+                writer.writerow(["Amount"])
+                writer.writerow(specialist_visit)
+                writer.writerow([])
+
+                writer.writerow(["Medical aid"])
+                writer.writerow(["Amount"])
+                writer.writerow(memberships)
+                writer.writerow([])
+
+                writer.writerow(["Total Expenses", total_expenses])
         else:
             print("Please enter either 'continue' or 'quit'")
             continue
@@ -45,7 +78,7 @@ def Medical():
 
 
 def PrescriptionMeds():
-    is_running =True
+    is_running = True
     while is_running:
         print("Welcome to prescription meds calculator!")
         option = input("Would you like to continue or quit").lower()
@@ -57,7 +90,7 @@ def PrescriptionMeds():
                     prescription_meds.append([price])
                     return price
                 elif price == 0:
-                    print(f"Your medical aid paid for your prescription!")
+                    print("Your medical aid paid for your prescription!")
                     prescription_meds.append([price])
                     return price
                 else:
@@ -74,6 +107,7 @@ def PrescriptionMeds():
             continue
     return 0
 
+
 def PrepaidMeds():
     is_running = True
     while is_running:
@@ -87,7 +121,7 @@ def PrepaidMeds():
                     prepaid_meds.append([price])
                     return price
                 elif price == 0:
-                    print(f"Your medical aid paid for your medication!")
+                    print("Your medical aid paid for your medication!")
                     prepaid_meds.append([price])
                     return price
                 else:
@@ -118,7 +152,7 @@ def DoctorVisits():
                     doctor_visits.append([price])
                     return price
                 elif price == 0:
-                    print(f"Your medical aid paid for your visit!")
+                    print("Your medical aid paid for your visit!")
                     doctor_visits.append([price])
                     return price
                 else:
@@ -135,6 +169,7 @@ def DoctorVisits():
             continue
     return 0
 
+
 def SpecialistVisits():
     is_running = True
     while is_running:
@@ -148,7 +183,7 @@ def SpecialistVisits():
                     specialist_visit.append([price])
                     return price
                 elif price == 0:
-                    print(f"Your medical aid paid for your visit!")
+                    print("Your medical aid paid for your visit!")
                     specialist_visit.append([price])
                     return price
                 else:
@@ -175,7 +210,7 @@ def Memberships():
             try:
                 price = float(input("Please enter your membership price: "))
                 if price > 0:
-                    print(f"Your membership price is R{price:.2f}")
+                    print("Your membership price is R{price:.2f}")
                     memberships.append([price])
                     return price
                 else:

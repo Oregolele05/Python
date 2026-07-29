@@ -1,8 +1,10 @@
+import csv
 emergency_fund = []
 retirement_fund = []
 investment_contributions = []
 education_fund = []
 financial_goals = []
+
 
 def Funding():
     total_expenses = 0
@@ -16,7 +18,7 @@ def Funding():
                                    "1. Emergency fund.\n"
                                    "2. Retirement fund.\n"
                                    "3. Investment contributions.\n"
-                                   "4. College fund.\n"
+                                   "4. Education fund.\n"
                                    "5. Financial goals.\n"
                                    "choice (1-5)"))
                 if choice == 1:
@@ -38,10 +40,42 @@ def Funding():
         elif option == "quit":
             is_running = False
             print("Goodbye!")
+            filename = "savings_and_investments.csv"
+            with open(filename, 'w', newline=' ') as file:
+                writer = csv.writer(file)
+
+                # child expenses
+                writer.writerow(["Emergency fund"])
+                writer.writerow(["Amount"])
+                writer.writerow(emergency_fund)
+                writer.writerow([])
+
+                writer.writerow(["Retirement fund"])
+                writer.writerow(["Amount"])
+                writer.writerow(retirement_fund)
+                writer.writerow([])
+
+                writer.writerow(["Investment portfolio"])
+                writer.writerow(["Amount"])
+                writer.writerow(investment_contributions)
+                writer.writerow([])
+
+                writer.writerow(["Education fund"])
+                writer.writerow(["Amount"])
+                writer.writerow(education_fund)
+                writer.writerow([])
+
+                writer.writerow(["Financial goals"])
+                writer.writerow(["Amount"])
+                writer.writerow(financial_goals)
+                writer.writerow([])
+
+                writer.writerow(["Total Expenses", total_expenses])
         else:
             print("Please enter either 'continue' or 'quit'.")
             continue
     return total_expenses
+
 
 def EmergencyFund():
     is_running = True
@@ -52,11 +86,13 @@ def EmergencyFund():
             try:
                 price = float(input("How much did you contribute?: R"))
                 if price > 0:
-                    print(f"You have contributed R{price:.2f} towards Emergency fund.")
+                    print(
+                        f"You have contributed R{price:.2f} towards Emergency fund.")
                     emergency_fund.append([price])
                     return price
                 else:
-                    print(f"You cannot contribute R{price:.2f} to Emergency fund.")
+                    print(
+                        f"You cannot contribute R{price:.2f} to Emergency fund.")
                     continue
             except ValueError:
                 print("Please enter a numeric value.")
@@ -79,11 +115,13 @@ def RetirementFund():
             try:
                 price = float(input("How much did you contribute?: R"))
                 if price > 0:
-                    print(f"You have contributed R{price:.2f} towards Retirement fund.")
+                    print(
+                        f"You have contributed R{price:.2f} towards Retirement fund.")
                     retirement_fund.append([price])
                     return price
                 else:
-                    print(f"You cannot contribute R{price:.2f} to Retirement fund.")
+                    print(
+                        f"You cannot contribute R{price:.2f} to Retirement fund.")
                     continue
             except ValueError:
                 print("Please enter a numeric value.")
@@ -106,11 +144,13 @@ def InvestmentContributions():
             try:
                 price = float(input("How much did you contribute?: R"))
                 if price > 0:
-                    print(f"You have contributed R{price:.2f} towards investments.")
+                    print(
+                        f"You have contributed R{price:.2f} towards investments.")
                     investment_contributions.append([price])
                     return price
                 else:
-                    print(f"You cannot contribute R{price:.2f} towards investments.")
+                    print(
+                        f"You cannot contribute R{price:.2f} towards investments.")
                     continue
             except ValueError:
                 print("Please enter a numeric value.")
@@ -123,6 +163,7 @@ def InvestmentContributions():
             continue
     return 0
 
+
 def EducationFund():
     is_running = True
     while is_running:
@@ -132,11 +173,13 @@ def EducationFund():
             try:
                 price = float(input("How much did you contribute?: R"))
                 if price > 0:
-                    print(f"You have contributed R{price:.2f} towards Education fund.")
+                    print(
+                        f"You have contributed R{price:.2f} towards Education fund.")
                     education_fund.append([price])
                     return price
                 else:
-                    print(f"You cannot contribute R{price:.2f} to Education fund.")
+                    print(
+                        f"You cannot contribute R{price:.2f} to Education fund.")
                     continue
             except ValueError:
                 print("Please enter a numeric value.")
@@ -159,11 +202,13 @@ def FinancialGoals():
             try:
                 price = float(input("How much did you contribute?: R"))
                 if price > 0:
-                    print(f"You have contributed R{price:.2f} towards financial goals.")
+                    print(
+                        f"You have contributed R{price:.2f} towards financial goals.")
                     financial_goals.append([price])
                     return price
                 else:
-                    print(f"You cannot contribute R{price:.2f} to financial goals.")
+                    print(
+                        f"You cannot contribute R{price:.2f} to financial goals.")
                     continue
             except ValueError:
                 print("Please enter a numeric value.")

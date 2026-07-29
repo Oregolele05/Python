@@ -1,3 +1,4 @@
+import csv
 credit_card = []
 student_loan = []
 personal_loan = []
@@ -34,6 +35,36 @@ def Debits():
         elif choice == "quit":
             is_running = False
             print("Thank you for your time!")
+            filename = "debt_payments.csv"
+            with open(filename, 'w', newline=' ') as file:
+                writer = csv.writer(file)
+
+                #Credit card payments
+                writer.writerow(["Credit card payment"])
+                writer.writerow(["Amount"])
+                writer.writerow(credit_card)
+                writer.writerow([])
+
+                #student loan paymemts
+                writer.writerow(["Student loan payments"])
+                writer.writerow(["Amount"])
+                writer.writerow(student_loan)
+                writer.writerow([])
+
+                #personal loan payments
+                writer.writerow(["Personal loan payments"])
+                writer.writerow(["Amount"])
+                writer.writerow(personal_loan)
+                writer.writerow([])
+
+                #medical debts payment
+                writer.writerow(["Medical debt payments"])
+                writer.writerow(["Amount"])
+                writer.writerow(medical_debt)
+                writer.writerow([])
+                
+                writer.writerow(["Total Expenses", total_expenses])
+
         else:
             print("Please enter either 'continue' or 'quit'")
             continue

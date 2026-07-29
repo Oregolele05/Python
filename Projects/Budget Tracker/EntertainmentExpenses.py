@@ -1,5 +1,6 @@
+import csv
 ordering_costs = []
-movie_tickets = []
+film_cost = []
 event_tickets = []
 recreational_hobby = []
 travelling = []
@@ -37,6 +38,42 @@ def Entertain():
                 continue
         elif option == "quit":
             print("Goodbye!")
+            filename = "entertainment_expenses.csv"
+            with open(filename, 'w', newline=' ') as file:
+                writer = csv.writer(file)
+
+                #food paymemts
+                writer.writerow(["Food expenses"])
+                writer.writerow(["Type", "amount"])
+                writer.writerow(ordering_costs)
+                writer.writerow([])
+
+                #Film costs
+                writer.writerow(["Movies"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerow(film_cost)
+                writer.writerow([])
+
+                #gigs
+                writer.writerow(["Outdoor gig"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerow(event_tickets)
+                writer.writerow([])
+
+                #recreational and hobbies
+                writer.writerow(["Extra activities"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerow(recreational_hobby)
+                writer.writerow([])
+
+                #travelling
+                writer.writerow(["Traveling costs"])
+                writer.writerow(["Type", "Amount"])
+                writer.writerow(travelling)
+                writer.writerow([])
+
+                writer.writerow(["Total Expenses", total_expenses])
+                
             is_running = False
         else:
             print("Please enter either 'continue' or 'quit'.")
@@ -122,7 +159,7 @@ def MovieAndRental():
                         price = float(input(f"How much did you spend on {film}?\n"))
                         if price > 0:
                             print(f"You spent R{price:.2f} on {film}.")
-                            movie_tickets.append([
+                            film_cost.append([
                                 film,
                                 price
                             ])
@@ -139,7 +176,7 @@ def MovieAndRental():
                         price = float(input(f"How much did you spend on {film}?\n"))
                         if price > 0:
                             print(f"You spent R{price:.2f} on {film}.")
-                            movie_tickets.append([
+                            film_cost.append([
                                 film,
                                 price
                             ])
