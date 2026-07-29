@@ -50,7 +50,7 @@ def Transportation():
         elif option == "quit":
             print("Goodbye!")
             filename = "transportation_expenses.csv"
-            with open(filename, "w", newline="") as file:
+            with open(filename, "w", newline='') as file:
                 writer = csv.writer(file)
 
                 

@@ -41,33 +41,33 @@ def Misc():
             is_running = False
             print("Goodbye!")
             filename = "miscellaneous_expenses.csv"
-            with open(filename, 'w', newline=' ') as file:
+            with open(filename, 'w', newline='') as file:
                 writer = csv.writer(file)
 
                 
                 writer.writerow(["Gift"])
                 writer.writerow(["Amount"])
-                writer.writerow(gift_cost)
+                writer.writerows(gift_cost)
                 writer.writerow([])
 
                 writer.writerow(["Charity Donations"])
                 writer.writerow(["Amount"])
-                writer.writerow(charity_donations)
+                writer.writerows(charity_donations)
                 writer.writerow([])
 
                 writer.writerow(["Memberships"])
                 writer.writerow(["Amount"])
-                writer.writerow(memberships_cost)
+                writer.writerows(memberships_cost)
                 writer.writerow([])
 
                 writer.writerow(["Developmen costs"])
                 writer.writerow(["Amount"])
-                writer.writerow(development_costs)
+                writer.writerows(development_costs)
                 writer.writerow([])
 
                 writer.writerow(["Unexpected costs"])
                 writer.writerow(["Amount"])
-                writer.writerow(unexpected_costs)
+                writer.writerows(unexpected_costs)
                 writer.writerow([])
 
                 writer.writerow(["Total Expenses", total_expenses])

@@ -51,7 +51,7 @@ def Expenses():
             print("Thank you for using Living Expenses Calculator!")
             print(f"Your total expenses is R{total_expenses:.2f}.")
             filename = "living_expenses.csv"
-            with open(filename, "w", newline="") as file:
+            with open(filename, "w", newline='') as file:
                 writer = csv.writer(file)
 
                 # Rent or Mortgage
@@ -213,7 +213,7 @@ def Utility():
         option = input("Would you like to continue or quit?: ").lower()
         if option == "continue":
             try:
-                item = int(input("Which utility did you purchase/pay?\n:"
+                item = int(input("Which utility did you purchase/pay?\n"
                              "1. Water\n"
                              "2. Electricity\n"
                              "3. Gas.\n "

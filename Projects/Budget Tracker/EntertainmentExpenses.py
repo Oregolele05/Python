@@ -18,7 +18,7 @@ def Entertain():
                 "2. Movie expenses.\n" 
                 "3. Events/Concerts.\n" 
                 "4. Recreational activities or hobbies.\n" 
-                "5. Vacation or Trips"
+                "5. Vacation or Trips.\n"
                 "choose an option (1-5): "))
                 if choice == 1:
                     total_expenses += OrderingAndDining()
@@ -39,37 +39,37 @@ def Entertain():
         elif option == "quit":
             print("Goodbye!")
             filename = "entertainment_expenses.csv"
-            with open(filename, 'w', newline=' ') as file:
+            with open(filename, 'w', newline='') as file:
                 writer = csv.writer(file)
 
                 #food paymemts
                 writer.writerow(["Food expenses"])
                 writer.writerow(["Type", "amount"])
-                writer.writerow(ordering_costs)
+                writer.writerows(ordering_costs)
                 writer.writerow([])
 
                 #Film costs
                 writer.writerow(["Movies"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(film_cost)
+                writer.writerows(film_cost)
                 writer.writerow([])
 
                 #gigs
                 writer.writerow(["Outdoor gig"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(event_tickets)
+                writer.writerows(event_tickets)
                 writer.writerow([])
 
                 #recreational and hobbies
                 writer.writerow(["Extra activities"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(recreational_hobby)
+                writer.writerows(recreational_hobby)
                 writer.writerow([])
 
                 #travelling
                 writer.writerow(["Traveling costs"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(travelling)
+                writer.writerows(travelling)
                 writer.writerow([])
 
                 writer.writerow(["Total Expenses", total_expenses])
@@ -213,7 +213,7 @@ def EventAndConcert():
                                    "1. Event.\n"
                                    "2. Festival.\n"
                                    "3. Concert.\n"
-                                   "choose an option (1-2): "))
+                                   "choose an option (1-3): "))
                 if choice == 1:
                     gig = outdoor[0]
                     try:
@@ -266,7 +266,7 @@ def EventAndConcert():
                         print("Please enter a numeric value.")
                         continue
                 else:
-                    print("Please enter 1 or 2.")
+                    print("Please choose 1-3.")
                     continue
             except ValueError:
                 print("Please enter a numeric value.")
@@ -355,7 +355,7 @@ def VacationAndTravel():
                 if choice == 1:
                     road = variety[0]
                     try:
-                        price = float(input(f"How much did you spend on {road}?\n"))
+                        price = float(input(f"How much did you spend on {road}?"))
                         if price > 0:
                             print(f"You spent R{price:.2f} on {road}.")
                             travelling.append([
@@ -372,7 +372,7 @@ def VacationAndTravel():
                 elif choice == 2:
                     road = variety[1]
                     try:
-                        price = float(input(f"How much did you spend on {road}?\n"))
+                        price = float(input(f"How much did you spend on {road}?"))
                         if price > 0:
                             print(f"You spent R{price:.2f} on {road}.")
                             travelling.append([

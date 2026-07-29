@@ -47,27 +47,27 @@ def Medical():
                 
                 writer.writerow(["Prescription medication costs"])
                 writer.writerow(["Amount"])
-                writer.writerow(prescription_meds)
+                writer.writerows(prescription_meds)
                 writer.writerow([])
 
                 writer.writerow(["Over the counter medication costs"])
                 writer.writerow(["Amount"])
-                writer.writerow(prepaid_meds)
+                writer.writerows(prepaid_meds)
                 writer.writerow([])
 
                 writer.writerow(["Doctor visits"])
                 writer.writerow(["Amount"])
-                writer.writerow(doctor_visits)
+                writer.writerows(doctor_visits)
                 writer.writerow([])
 
                 writer.writerow(["Specialist visit"])
                 writer.writerow(["Amount"])
-                writer.writerow(specialist_visit)
+                writer.writerows(specialist_visit)
                 writer.writerow([])
 
                 writer.writerow(["Medical aid"])
                 writer.writerow(["Amount"])
-                writer.writerow(memberships)
+                writer.writerows(memberships)
                 writer.writerow([])
 
                 writer.writerow(["Total Expenses", total_expenses])

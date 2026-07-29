@@ -45,37 +45,37 @@ def TechServices():
         elif option == "quit":
             print("Goodbye!")
             filename = "technology_expenses.csv"
-            with open(filename, 'w', newline=' ') as file:
+            with open(filename, 'w', newline='') as file:
                 writer = csv.writer(file)
 
                 writer.writerow(["Electronic device costs"])
                 writer.writerow(["Electronic", "Amount"])
-                writer.writerow(device_cost)
+                writer.writerows(device_cost)
                 writer.writerow([])
 
                 writer.writerow(["Internet services"])
                 writer.writerow(["Plan", "Amount"])
-                writer.writerow(internet_plan)
+                writer.writerows(internet_plan)
                 writer.writerow([])
 
                 writer.writerow(["Computer components"])
                 writer.writerow(["Component", "Amount"])
-                writer.writerow(computer_payments)
+                writer.writerows(computer_payments)
                 writer.writerow([])
 
                 writer.writerow(["Streaming services"])
                 writer.writerow(["Platform", "Amount"])
-                writer.writerow(streaming_payments)
+                writer.writerows(streaming_payments)
                 writer.writerow([])
 
                 writer.writerow(["Gaming subscriptions"])
                 writer.writerow(["Plan", "Amount"])
-                writer.writerow(gaming_subscriptions)
+                writer.writerows(gaming_subscriptions)
                 writer.writerow([])
 
                 writer.writerow(["Tech accessories"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(tech_parts)
+                writer.writerows(tech_parts)
                 writer.writerow([])
 
                 writer.writerow(["Total Expenses", total_expenses])

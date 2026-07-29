@@ -42,33 +42,33 @@ def FamCare():
             print("Goodbye!")
 
             filename = "family_expenses.csv"
-            with open(filename, 'w', newline=' ') as file:
+            with open(filename, 'w', newline='') as file:
                 writer = csv.writer(file)
 
                 # child expenses
                 writer.writerow(["Child Expenses"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(child_expenses)
+                writer.writerows(child_expenses)
                 writer.writerow([])
 
                 writer.writerow(["Schools supplies or Fees"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(school_expenses)
+                writer.writerows(school_expenses)
                 writer.writerow([])
 
                 writer.writerow(["Elderly Expenses"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(elder_costs)
+                writer.writerows(elder_costs)
                 writer.writerow([])
 
                 writer.writerow(["Veterinary Expenses"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(veterinary_expenses)
+                writer.writerows(veterinary_expenses)
                 writer.writerow([])
 
                 writer.writerow(["Pet Insurance"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(pet_insurance)
+                writer.writerows(pet_insurance)
                 writer.writerow([])
 
                 writer.writerow(["Total Expenses", total_expenses])

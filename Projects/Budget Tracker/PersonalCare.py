@@ -41,33 +41,33 @@ def SelfCare():
             is_running = False
             print("Goodbye!")
             filename = "personal_expenses.csv"
-            with open(filename, 'w', newline=' ') as file:
+            with open(filename, 'w', newline='') as file:
                 writer = csv.writer(file)
 
                 
                 writer.writerow(["Personal hygiene"])
                 writer.writerow(["Item", "Amount"])
-                writer.writerow(hygiene_products)
+                writer.writerows(hygiene_products)
                 writer.writerow([])
 
                 writer.writerow(["Hair services"])
                 writer.writerow(["Amount"])
-                writer.writerow(grooming_services)
+                writer.writerows(grooming_services)
                 writer.writerow([])
 
                 writer.writerow(["Clothing care"])
                 writer.writerow(["Amount"])
-                writer.writerow(laundry_dryCleaning)
+                writer.writerows(laundry_dryCleaning)
                 writer.writerow([])
 
                 writer.writerow(["Cosmetics"])
                 writer.writerow(["Type", "Amount"])
-                writer.writerow(cosmetics)
+                writer.writerows(cosmetics)
                 writer.writerow([])
 
                 writer.writerow(["Wellness treatments"])
                 writer.writerow(["Amount"])
-                writer.writerow(wellness_treatments)
+                writer.writerows(wellness_treatments)
                 writer.writerow([])
 
                 writer.writerow(["Total Expenses", total_expenses])

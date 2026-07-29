@@ -41,33 +41,33 @@ def Funding():
             is_running = False
             print("Goodbye!")
             filename = "savings_and_investments.csv"
-            with open(filename, 'w', newline=' ') as file:
+            with open(filename, 'w', newline='') as file:
                 writer = csv.writer(file)
 
                 # child expenses
                 writer.writerow(["Emergency fund"])
                 writer.writerow(["Amount"])
-                writer.writerow(emergency_fund)
+                writer.writerows(emergency_fund)
                 writer.writerow([])
 
                 writer.writerow(["Retirement fund"])
                 writer.writerow(["Amount"])
-                writer.writerow(retirement_fund)
+                writer.writerows(retirement_fund)
                 writer.writerow([])
 
                 writer.writerow(["Investment portfolio"])
                 writer.writerow(["Amount"])
-                writer.writerow(investment_contributions)
+                writer.writerows(investment_contributions)
                 writer.writerow([])
 
                 writer.writerow(["Education fund"])
                 writer.writerow(["Amount"])
-                writer.writerow(education_fund)
+                writer.writerows(education_fund)
                 writer.writerow([])
 
                 writer.writerow(["Financial goals"])
                 writer.writerow(["Amount"])
-                writer.writerow(financial_goals)
+                writer.writerows(financial_goals)
                 writer.writerow([])
 
                 writer.writerow(["Total Expenses", total_expenses])
